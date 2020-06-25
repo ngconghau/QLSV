@@ -1,5 +1,5 @@
 
-package Main;
+package JFrameForm;
 
 import javax.swing.JOptionPane;
 
