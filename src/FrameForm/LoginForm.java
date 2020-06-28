@@ -1,7 +1,6 @@
 
 package FrameForm;
 
-import Panels.MainForm;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,7 +14,7 @@ public class LoginForm extends javax.swing.JFrame {
      */
     public LoginForm() {
         initComponents();
-        
+                
     }
 
     /**
@@ -164,7 +163,7 @@ public class LoginForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Username or Password is empty");
         }
         else if(userName.equals("admin")&& passWord.equals("12345")){
-            MainForm mf=new MainForm();
+            Main_Menu mf=new Main_Menu();
             mf.setVisible(true);
             mf.pack();
             mf.setLocationRelativeTo(null);
