@@ -1,6 +1,7 @@
 
-package JFrameForm;
+package FrameForm;
 
+import Panels.MainForm;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,6 +15,7 @@ public class LoginForm extends javax.swing.JFrame {
      */
     public LoginForm() {
         initComponents();
+        
     }
 
     /**
@@ -39,6 +41,7 @@ public class LoginForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 40)); // NOI18N
         jLabel1.setText("Login");
@@ -159,7 +162,6 @@ public class LoginForm extends javax.swing.JFrame {
         
         if(userName.equals("")|| passWord.equals("")){
             JOptionPane.showMessageDialog(this, "Username or Password is empty");
-            return;
         }
         else if(userName.equals("admin")&& passWord.equals("12345")){
             MainForm mf=new MainForm();
@@ -169,7 +171,7 @@ public class LoginForm extends javax.swing.JFrame {
             this.dispose();
         }
         else{
-            JOptionPane.showMessageDialog(null,"Nhap sai");
+            JOptionPane.showMessageDialog(null,"Ban nhap sai thong tin dang nhap");
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 
