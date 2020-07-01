@@ -21,7 +21,7 @@ public class DatabaseUtils {
             String url = "jdbc:sqlserver://localhost;databaseName=QLSVDB";
            
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            con = DriverManager.getConnection(url,"sa","123456");
+            con = DriverManager.getConnection(url,"sa","hau@@123");
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseUtils.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
