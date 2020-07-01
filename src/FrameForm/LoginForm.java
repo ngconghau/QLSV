@@ -1,7 +1,13 @@
-
 package FrameForm;
 
 import javax.swing.JOptionPane;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import DB.DatabaseUtils;
+import Model.UserDao;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -14,7 +20,7 @@ public class LoginForm extends javax.swing.JFrame {
      */
     public LoginForm() {
         initComponents();
-                
+
     }
 
     /**
@@ -156,23 +162,44 @@ public class LoginForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        String userName=txtUser.getText();
-        String passWord=new String(txtPass.getPassword());
-        
-        if(userName.equals("")|| passWord.equals("")){
-            JOptionPane.showMessageDialog(this, "Username or Password is empty");
-        }
-        else if(userName.equals("admin")&& passWord.equals("12345")){
-            Main_Menu mf=new Main_Menu();
-            mf.setVisible(true);
-            mf.pack();
-            mf.setLocationRelativeTo(null);
-            this.dispose();
-        }
-        else{
-            JOptionPane.showMessageDialog(null,"Ban nhap sai thong tin dang nhap");
+        try {
+            String username = txtUser.getText();
+            String password = new String(txtPass.getPassword());
+
+            if (username.equals("") || password.equals("")) {
+                JOptionPane.showMessageDialog(this, "Username or Password is empty");
+            }
+            UserDao userDao = new UserDao();
+            if (userDao.checkLogin(username, password) != null) {
+                Main_Menu mf = new Main_Menu();
+                mf.setVisible(true);
+                mf.pack();
+                mf.setLocationRelativeTo(null);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Invalid username or password");
+            }
+        } catch (Exception ex) {
+           JOptionPane.showMessageDialog(this, "Error: "+ex.getMessage());
         }
     }//GEN-LAST:event_btnLoginActionPerformed
+    private boolean checkLogin(String username, String password) {
+        String sql = "select * from Users where username = ? and password = ?";
+        try (
+                 Connection con = DatabaseUtils.openConnection();  PreparedStatement pstmt = con.prepareStatement(sql)) {
+            pstmt.setString(1, username);
+            pstmt.setString(2, password);
+
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(this, "Error: " + e.getMessage());
+        }
+        return false;
+    }
 
     /**
      * @param args the command line arguments
