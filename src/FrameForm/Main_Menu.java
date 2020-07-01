@@ -5,6 +5,8 @@
  */
 package FrameForm;
 
+
+
 import Model.ScoreDao;
 import Model.Score;
 import Model.Student;
@@ -17,7 +19,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-
+import java.lang.Float;
 /**
  *
  * @author Hau
@@ -34,6 +36,8 @@ public class Main_Menu extends javax.swing.JFrame {
         initComponents();
         initTableStudentModel();
         loadTableStudentData();
+        initTableScoreModel();
+        loadTableScoretData();
     }
 
     public void initTableStudentModel() {
@@ -70,7 +74,7 @@ public class Main_Menu extends javax.swing.JFrame {
     
     public void initTableScoreModel() {
         String[] columnHeaders = new String[] {
-            "ID","FullName","Toán","Văn","Anh","Lý","Hóa","Sinh","Địa","Sử","QP","Tin","GDCD","Thể"
+            "ID","FullName","DiemToan","DiemVan","DiemAnh","DiemVatLy","Hóa","Sinh","Địa","Sử","QP","Tin","GDCD","Thể"
         };
         dtmScore = new DefaultTableModel();
         dtmScore.setColumnIdentifiers(columnHeaders);
@@ -1152,7 +1156,34 @@ public class Main_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_txtIDScoreActionPerformed
 
     private void tblScoreMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblScoreMousePressed
-        // TODO add your handling code here:
+        try {
+            JTable table = (JTable) evt.getSource();
+            if (evt.getClickCount() == 2 && table.getSelectedRow() >= 0) {
+                Object idObject = tblScore.getValueAt(table.getSelectedRow(), 0);
+                ScoreDao dao = new ScoreDao();
+                Score score = dao.findByID(idObject.toString());
+                if (score != null) {
+                    txtIDScore.setText(score.getId());
+                    txtfullnameScore.setText(score.getFullname());
+                    txtToan.setText(Float.toString(score.getToan()));
+                    txtVan.setText(Float.toString(score.getVan()));
+                    txtAnh.setText(Float.toString(score.getAnh()));
+                    txtLy.setText(Float.toString(score.getLy()));
+                    txtHoa.setText(Float.toString(score.getHoa()));
+                    txtSinh.setText(Float.toString(score.getSinh()));
+                    txtDia.setText(Float.toString(score.getDia()));
+                    txtSu.setText(Float.toString(score.getSu()));
+                    txtQP.setText(Float.toString(score.getQuocphong()));
+                    txtTin.setText(Float.toString(score.getTin()));
+                    txtGDCD.setText(Float.toString(score.getGdcd()));
+                    txtTheChat.setText(Float.toString(score.getThechat()));
+                    
+                    
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+    }   
     }//GEN-LAST:event_tblScoreMousePressed
 
     private void btnAddScoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddScoreActionPerformed
@@ -1171,26 +1202,99 @@ public class Main_Menu extends javax.swing.JFrame {
             ScoreDao dao = new ScoreDao();
             Score score = new Score();
             score.setId(txtIDScore.getText());
-            score.setFullname(txtfullnameScore.getText());
-         //   score.getToan(txtToan.)
+            score.setFullname(txtfullnameScore.getText());          
+           score.setToan(Float.parseFloat(txtToan.getText()));
+           score.setVan(Float.parseFloat(txtVan.getText()));
+           score.setAnh(Float.parseFloat(txtAnh.getText()));
+           score.setLy(Float.parseFloat(txtLy.getText()));
+           score.setHoa(Float.parseFloat(txtHoa.getText()));
+           score.setSinh(Float.parseFloat(txtSinh.getText()));
+           score.setDia(Float.parseFloat(txtDia.getText()));
+           score.setSu(Float.parseFloat(txtSu.getText()));
+           score.setQuocphong(Float.parseFloat(txtQP.getText()));
+           score.setTin(Float.parseFloat(txtTin.getText()));
+           score.setGdcd(Float.parseFloat(txtGDCD.getText()));
+           score.setThechat(Float.parseFloat(txtTheChat.getText()));
+
             
             if (dao.addScore(score)) {
                 JOptionPane.showMessageDialog(this, "Add thanh cong");
             } else {
                 JOptionPane.showMessageDialog(this, "Add khong thanh cong");
             }
-            loadTableStudentData();
+            loadTableScoretData();
         } catch (Exception e) {
             JOptionPane.showConfirmDialog(this, "Error: " + e.getMessage());
         }
     }//GEN-LAST:event_btnAddScoreActionPerformed
 
     private void btnUpdateScoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateScoreActionPerformed
-        // TODO add your handling code here:
+        try {
+            StringBuilder sb = new StringBuilder();
+            if (txtfullnameScore.getText().equals("")) {
+                sb.append("Vui long nhap ho ten");
+                txtfullnameScore.setBackground(Color.red);
+            } else {
+                txtfullnameScore.setBackground(Color.white);
+            }
+            if (sb.length() > 0) {
+                JOptionPane.showMessageDialog(this, sb.toString());
+                return;
+            }
+            ScoreDao dao = new ScoreDao();
+            Score score = new Score();
+            score.setId(txtIDScore.getText());
+            score.setFullname(txtfullnameScore.getText());
+            score.setToan(Float.parseFloat(txtToan.getText()));
+           score.setVan(Float.parseFloat(txtVan.getText()));
+           score.setAnh(Float.parseFloat(txtAnh.getText()));
+           score.setLy(Float.parseFloat(txtLy.getText()));
+           score.setHoa(Float.parseFloat(txtHoa.getText()));
+           score.setSinh(Float.parseFloat(txtSinh.getText()));
+           score.setDia(Float.parseFloat(txtDia.getText()));
+           score.setSu(Float.parseFloat(txtSu.getText()));
+           score.setQuocphong(Float.parseFloat(txtQP.getText()));
+           score.setTin(Float.parseFloat(txtTin.getText()));
+           score.setGdcd(Float.parseFloat(txtGDCD.getText()));
+           score.setThechat(Float.parseFloat(txtTheChat.getText()));
+            if (dao.updateScore(score)) {
+                JOptionPane.showMessageDialog(this, "Update thanh cong");
+            } else {
+                JOptionPane.showMessageDialog(this, "Update khong thanh cong");
+            }
+            loadTableScoretData();
+        } catch (Exception ex) {
+            Logger.getLogger(Main_Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnUpdateScoreActionPerformed
 
     private void btnDeleteScoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteScoreActionPerformed
-        // TODO add your handling code here:
+         try {
+            StringBuilder sb = new StringBuilder();
+            if (txtIDScore.getText().equals("")) {
+                sb.append("Vui long nhap ID");
+                txtIDScore.setBackground(Color.red);
+            } else {
+                txtIDScore.setBackground(Color.white);
+            }
+            if (sb.length() > 0) {
+                JOptionPane.showMessageDialog(this, sb.toString());
+                return;
+            }
+            if (JOptionPane.showConfirmDialog(this, "Ban co muon xoa diem cua hoc sinh co ID: " + txtIDScore.getText()) != JOptionPane.YES_OPTION) {
+                return;
+            }
+            ScoreDao dao = new ScoreDao();
+            String id = txtIDScore.getText();
+            if (dao.deleteScore(id)) {
+                JOptionPane.showMessageDialog(this, "Delete thanh cong");
+            } else {
+                JOptionPane.showMessageDialog(this, "Delete khong thanh cong");
+            }
+            loadTableScoretData();
+        } catch (Exception ex) {
+            Logger.getLogger(Main_Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnDeleteScoreActionPerformed
 
     private void txtToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtToanActionPerformed

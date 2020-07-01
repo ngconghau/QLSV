@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class ScoreDao {
     public boolean addScore(Score s) throws Exception {
-        String sql = "insert into Scores(id,fullname,diemtoan,diemvan,diemtienganh,diemvatly,diemhoahoc,diemsinhhoc,diemdialy,diemlichsu,diemqp,diemtinhhoc,diemgdcd,diemthechat)"
+        String sql = "insert into Scores(id,fullname,Toan,Van,Anh,Ly,Hoa,Sinh,Dia,Su,QP,Tin,GDCD,The)"
                 + " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         try (
@@ -41,7 +41,7 @@ public class ScoreDao {
         }
     }
     public boolean updateScore(Score s) throws Exception {
-        String sql = "update Scores set fullname = ?, diemtoan = ?, diemvan = ?, diemtienganh = ?, diemvatly = ?, diemhoahoc = ?, diemsinhhoc = ?,diemdialy = ?, diemlichsu= ?, diemqp = ?, diemtinhoc = ?, diemgdcd = ?, diemthechat = ? where id = ?";
+        String sql = "update Scores set fullname = ?, Toan = ?, Van = ?, Anh = ?, Ly = ?, Hoa = ?, Sinh = ?,Dia = ?, Su= ?, QP = ?, Tin = ?, GDCD = ?, The = ? where id = ?";
                       
 
         try (
@@ -74,6 +74,36 @@ public class ScoreDao {
             return pstmt.executeUpdate() > 0;
         }
     }
+      public Score findByID(String id) throws Exception {
+        String sql = "select * from Scores where id = ?";
+                      
+
+        try (
+            Connection con = DatabaseUtils.openConnection();  PreparedStatement pstmt = con.prepareStatement(sql);) {
+            pstmt.setString(1, id);
+            ResultSet rs = pstmt.executeQuery();
+            if(rs.next()){
+                Score score = new Score();
+                score.setId(rs.getString("ID"));
+                score.setFullname(rs.getString("FullName"));
+                score.setToan(rs.getFloat("Toan"));
+                score.setVan(rs.getFloat("Van"));
+                score.setAnh(rs.getFloat("Anh"));
+                score.setLy(rs.getFloat("Ly"));
+                score.setHoa(rs.getFloat("Hoa"));
+                score.setSinh(rs.getFloat("Sinh"));
+                score.setDia(rs.getFloat("Dia"));
+                score.setSu(rs.getFloat("Su"));
+                score.setQuocphong(rs.getFloat("QP"));
+                score.setTin(rs.getFloat("Tin"));
+                score.setGdcd(rs.getFloat("GDCD"));
+                score.setThechat(rs.getFloat("The"));
+                
+                return score;
+            }
+            return null;
+        }
+      }
      public List<Score> findScore() throws Exception {
         String sql = "select * from Scores";
                       
@@ -87,18 +117,18 @@ public class ScoreDao {
                 Score score = new Score();
                 score.setId(rs.getString("ID"));
                 score.setFullname(rs.getString("FullName"));
-                score.setToan(rs.getFloat("Toán"));
-                score.setVan(rs.getFloat("Văn"));
+                score.setToan(rs.getFloat("Toan"));
+                score.setVan(rs.getFloat("Van"));
                 score.setAnh(rs.getFloat("Anh"));
-                score.setLy(rs.getFloat("Lý"));
-                score.setHoa(rs.getFloat("Hóa"));
+                score.setLy(rs.getFloat("Ly"));
+                score.setHoa(rs.getFloat("Hoa"));
                 score.setSinh(rs.getFloat("Sinh"));
-                score.setDia(rs.getFloat("Địa"));
-                score.setSu(rs.getFloat("Sử"));
+                score.setDia(rs.getFloat("Dia"));
+                score.setSu(rs.getFloat("Su"));
                 score.setQuocphong(rs.getFloat("QP"));
                 score.setTin(rs.getFloat("Tin"));
                 score.setGdcd(rs.getFloat("GDCD"));
-                score.setThechat(rs.getFloat("Thể"));
+                score.setThechat(rs.getFloat("The"));
                 
                 
                list.add(score);
