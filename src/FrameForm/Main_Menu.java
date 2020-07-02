@@ -10,6 +10,7 @@ import Model.Score;
 import Model.Student;
 import Model.StudentDao;
 import java.awt.Color;
+import java.awt.Toolkit;
 import java.util.List;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -18,6 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import java.lang.Float;
+
 
 /**
  *
@@ -33,6 +35,7 @@ public class Main_Menu extends javax.swing.JFrame {
     public Main_Menu() {
 
         initComponents();
+        setIcon();
         pnStudent.setVisible(true);
         pnScore.setVisible(false);
         p3.setVisible(false);
@@ -41,7 +44,9 @@ public class Main_Menu extends javax.swing.JFrame {
         initTableScoreModel();
         loadTableScoretData();
     }
+    
 
+// begin funtion 
     public void initTableStudentModel() {
         String[] columnHeaders = new String[]{
             "id", "FullName", "Gender", "Address", "PhoneNumber", "Email"
@@ -115,6 +120,7 @@ public class Main_Menu extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
         }
     }
+    // end funtion
 
     // begin funtion reset 
     public void resetFormStudent() {
@@ -180,6 +186,8 @@ public class Main_Menu extends javax.swing.JFrame {
         btnReset = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
+        jTextField3 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
         pnScore = new javax.swing.JPanel();
         pnScoreforSub = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
@@ -217,6 +225,8 @@ public class Main_Menu extends javax.swing.JFrame {
         btnResetScore = new javax.swing.JButton();
         btnUpdateScore = new javax.swing.JButton();
         btnDeleteScore = new javax.swing.JButton();
+        jTextField4 = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
         p3 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -240,7 +250,7 @@ public class Main_Menu extends javax.swing.JFrame {
         pnMain.setPreferredSize(new java.awt.Dimension(1280, 700));
         pnMain.setLayout(new java.awt.BorderLayout());
 
-        pnltop.setBackground(new java.awt.Color(0, 102, 204));
+        pnltop.setBackground(new java.awt.Color(153, 153, 153));
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
         jLabel1.setText("UTC2 University Student Management System");
@@ -250,9 +260,9 @@ public class Main_Menu extends javax.swing.JFrame {
         pnltopLayout.setHorizontalGroup(
             pnltopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnltopLayout.createSequentialGroup()
-                .addGap(67, 67, 67)
+                .addGap(196, 196, 196)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(213, Short.MAX_VALUE))
         );
         pnltopLayout.setVerticalGroup(
             pnltopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -269,7 +279,7 @@ public class Main_Menu extends javax.swing.JFrame {
         btnScore.setBackground(new java.awt.Color(102, 102, 102));
         btnScore.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         btnScore.setForeground(new java.awt.Color(51, 51, 51));
-        btnScore.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/home-icon.png"))); // NOI18N
+        btnScore.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/nhapdiem.png"))); // NOI18N
         btnScore.setText("SCORE");
         btnScore.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -367,9 +377,17 @@ public class Main_Menu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnInforLayout.createSequentialGroup()
+                        .addGroup(pnInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel15)
+                            .addComponent(jLabel16))
+                        .addGap(35, 35, 35)
+                        .addGroup(pnInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtPhone)
+                            .addComponent(txtEmail)))
+                    .addGroup(pnInforLayout.createSequentialGroup()
                         .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(26, 26, 26)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(pnInforLayout.createSequentialGroup()
                         .addGroup(pnInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnInforLayout.createSequentialGroup()
@@ -386,15 +404,7 @@ public class Main_Menu extends javax.swing.JFrame {
                                 .addGroup(pnInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtfullname, javax.swing.GroupLayout.DEFAULT_SIZE, 339, Short.MAX_VALUE)
                                     .addComponent(txtID))))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(pnInforLayout.createSequentialGroup()
-                        .addGroup(pnInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel15)
-                            .addComponent(jLabel16))
-                        .addGap(35, 35, 35)
-                        .addGroup(pnInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtPhone)
-                            .addComponent(txtEmail))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         pnInforLayout.setVerticalGroup(
@@ -527,32 +537,47 @@ public class Main_Menu extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jButton1.setText("Find");
+
         javax.swing.GroupLayout pnStudentLayout = new javax.swing.GroupLayout(pnStudent);
         pnStudent.setLayout(pnStudentLayout);
         pnStudentLayout.setHorizontalGroup(
             pnStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnStudentLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnStudentLayout.createSequentialGroup()
-                        .addComponent(pnInfor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(scrTableStudent, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
-                        .addGap(14, 14, 14))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnStudentLayout.createSequentialGroup()
+                .addGroup(pnStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(pnStudentLayout.createSequentialGroup()
                         .addComponent(pnButtonStudent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .addGroup(pnStudentLayout.createSequentialGroup()
+                        .addComponent(pnInfor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(pnStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnStudentLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(scrTableStudent, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+                                .addGap(14, 14, 14))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnStudentLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton1)
+                                .addGap(53, 53, 53))))))
         );
         pnStudentLayout.setVerticalGroup(
             pnStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnStudentLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addGroup(pnStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(scrTableStudent, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
-                    .addComponent(pnInfor, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGroup(pnStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(pnInfor, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnStudentLayout.createSequentialGroup()
+                        .addGroup(pnStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(scrTableStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(32, 32, 32)
                 .addComponent(pnButtonStudent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pnlprinciple.add(pnStudent, "card3");
@@ -581,7 +606,7 @@ public class Main_Menu extends javax.swing.JFrame {
 
         jLabel20.setText("NGỮ VĂN");
 
-        jLabel21.setText("TIẾNG ANH");
+        jLabel21.setText("English");
 
         jLabel22.setText("VẬT LÝ");
 
@@ -616,18 +641,14 @@ public class Main_Menu extends javax.swing.JFrame {
                 .addGroup(pnScoreforSubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(pnScoreforSubLayout.createSequentialGroup()
                         .addGroup(pnScoreforSubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnScoreforSubLayout.createSequentialGroup()
-                                .addGroup(pnScoreforSubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(pnScoreforSubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel21))
-                                    .addComponent(jLabel19)
-                                    .addComponent(jLabel22)
-                                    .addComponent(jLabel23))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                            .addGroup(pnScoreforSubLayout.createSequentialGroup()
-                                .addComponent(jLabel24)
-                                .addGap(15, 15, 15)))
+                            .addComponent(jLabel19)
+                            .addComponent(jLabel22)
+                            .addComponent(jLabel23)
+                            .addGroup(pnScoreforSubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jLabel21, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel24, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(pnScoreforSubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtVan)
                             .addComponent(txtAnh)
@@ -638,7 +659,7 @@ public class Main_Menu extends javax.swing.JFrame {
                         .addGap(46, 46, 46)
                         .addGroup(pnScoreforSubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnScoreforSubLayout.createSequentialGroup()
-                                .addComponent(jLabel25)
+                                .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(txtTheChat, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnScoreforSubLayout.createSequentialGroup()
@@ -646,17 +667,17 @@ public class Main_Menu extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(txtSu, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnScoreforSubLayout.createSequentialGroup()
-                                .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel30, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(36, 36, 36)
                                 .addComponent(txtDia, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnScoreforSubLayout.createSequentialGroup()
-                                .addComponent(jLabel26)
+                                .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(txtGDCD, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnScoreforSubLayout.createSequentialGroup()
-                                .addGroup(pnScoreforSubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel27)
-                                    .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(pnScoreforSubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(39, 39, 39)
                                 .addGroup(pnScoreforSubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtQP, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -667,8 +688,10 @@ public class Main_Menu extends javax.swing.JFrame {
                             .addComponent(jLabel10))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(pnScoreforSubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtIDScore)
-                            .addComponent(txtfullnameScore))))
+                            .addComponent(txtfullnameScore)
+                            .addGroup(pnScoreforSubLayout.createSequentialGroup()
+                                .addComponent(txtIDScore, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnScoreforSubLayout.setVerticalGroup(
@@ -842,6 +865,8 @@ public class Main_Menu extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jButton2.setText("Find");
+
         javax.swing.GroupLayout pnScoreLayout = new javax.swing.GroupLayout(pnScore);
         pnScore.setLayout(pnScoreLayout);
         pnScoreLayout.setHorizontalGroup(
@@ -850,24 +875,39 @@ public class Main_Menu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnScoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnScoreLayout.createSequentialGroup()
-                        .addComponent(pnScoreforSub, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(scrTableScore)
-                        .addGap(14, 14, 14))
-                    .addGroup(pnScoreLayout.createSequentialGroup()
                         .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(96, 96, 96))))
+                        .addGap(96, 96, 96))
+                    .addGroup(pnScoreLayout.createSequentialGroup()
+                        .addComponent(pnScoreforSub, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(pnScoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnScoreLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(scrTableScore)
+                                .addGap(14, 14, 14))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnScoreLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton2)
+                                .addGap(104, 104, 104))))))
         );
         pnScoreLayout.setVerticalGroup(
             pnScoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnScoreLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
                 .addGroup(pnScoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrTableScore, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pnScoreforSub, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnScoreLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(pnScoreforSub, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnScoreLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(pnScoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton2))
+                        .addGap(18, 18, 18)
+                        .addComponent(scrTableScore, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pnlprinciple.add(pnScore, "card2");
@@ -1345,6 +1385,7 @@ public class Main_Menu extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
+        
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -1366,7 +1407,7 @@ public class Main_Menu extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Main_Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -1389,6 +1430,8 @@ public class Main_Menu extends javax.swing.JFrame {
     private javax.swing.JButton btnlogout;
     private javax.swing.JButton btnsearch;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
@@ -1424,6 +1467,8 @@ public class Main_Menu extends javax.swing.JFrame {
     private javax.swing.JTable jTable3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
     private javax.swing.JPanel p3;
     private javax.swing.JPanel pnButtonStudent;
     private javax.swing.JPanel pnInfor;
@@ -1460,4 +1505,8 @@ public class Main_Menu extends javax.swing.JFrame {
     private javax.swing.JTextField txtfullname;
     private javax.swing.JTextField txtfullnameScore;
     // End of variables declaration//GEN-END:variables
+
+    private void setIcon() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("icon.png")));
+    }
 }
