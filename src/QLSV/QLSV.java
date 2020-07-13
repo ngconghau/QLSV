@@ -5,7 +5,7 @@
  */
 package QLSV;
 
-import FrameForm.LoginForm;
+
 
 /**
  *
@@ -13,7 +13,6 @@ import FrameForm.LoginForm;
  */
 public class QLSV {
     public static void main(String[] args) {
-        LoginForm lg=new LoginForm();
-        lg.setVisible(true);
+ 
     }
 }

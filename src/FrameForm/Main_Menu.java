@@ -81,7 +81,7 @@ public class Main_Menu extends javax.swing.JFrame {
 
     public void initTableScoreModel() {
         String[] columnHeaders = new String[]{
-            "ID", "Name", "ĐToán", "ĐVăn", "ĐAnh", "ĐLý", "ĐHóa", "ĐSinh", "ĐĐịa", "ĐSử", "ĐQP", "ĐTin", "ĐGDCD", "ĐGDTC"
+            "ID", "Name", "Toán", "Văn", "Anh", "Lý", "Hóa", "ĐSinh", "Địa", "Sử", "QP", "Tin", "GDCD", "GDTC"
         };
         dtmScore = new DefaultTableModel();
         dtmScore.setColumnIdentifiers(columnHeaders);
