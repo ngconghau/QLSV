@@ -19,7 +19,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import java.lang.Float;
-
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -27,6 +28,9 @@ import java.lang.Float;
  */
 public class Main_Menu extends javax.swing.JFrame {
 
+    private void setIcon() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("icon.png")));
+    }
     DefaultTableModel dtmStudent, dtmScore;
 
     /**
@@ -39,18 +43,16 @@ public class Main_Menu extends javax.swing.JFrame {
         pnStudent.setVisible(true);
         pnScore.setVisible(false);
         p3.setVisible(false);
+
         initTableStudentModel();
         loadTableStudentData();
         initTableScoreModel();
         loadTableScoretData();
     }
-    
 
 // begin funtion 
     public void initTableStudentModel() {
-        String[] columnHeaders = new String[]{
-            "id", "FullName", "Gender", "Address", "PhoneNumber", "Email"
-        };
+        String[] columnHeaders = new String[]{"id", "FullName", "Gender", "Birthdate", "Address", "PhoneNumber", "Email"};
         dtmStudent = new DefaultTableModel();
         dtmStudent.setColumnIdentifiers(columnHeaders);
         tblStudents.setModel(dtmStudent);
@@ -67,7 +69,9 @@ public class Main_Menu extends javax.swing.JFrame {
                 Vector row = new Vector();
                 row.add(student.getId());
                 row.add(student.getFullName());
-                row.add(student.isGender());
+                row.add(student.getGender());
+//                row.add(student.isGender());
+                row.add(student.getBirthdate());
                 row.add(student.getAddress());
                 row.add(student.getPhoneNum());
                 row.add(student.getEmail());
@@ -120,15 +124,45 @@ public class Main_Menu extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
         }
     }
-    // end funtion
 
+    // end funtion
+    //begin verifile Text Students
+    public boolean verifTextStudent() {
+        if (txtID.getText().equals("") || txtfullname.getText().equals("") || txaAddress.getText().equals("")
+                || txtPhone.getText().equals("") || txtEmail.getText().equals("") || jDateChooserBirthdate.getDate() == null) {
+            JOptionPane.showMessageDialog(null, "One Or More Empty Field");
+            return false;
+        } else if (jDateChooserBirthdate.getDate().compareTo(new Date()) > 0) {
+            JOptionPane.showMessageDialog(null, "No larger than the current date is allowed");
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    //end verifile Text Students
+//begin verifile Text Score
+    public boolean verifiTextScore() {
+        if (txtIDScore.getText().equals("") || txtfullnameScore.getText().equals("") || txtToan.getText().equals("")
+                || txtVan.getText().equals("") || txtAnh.getText().equals("") || txtLy.getText().equals("")
+                || txtHoa.getText().equals("") || txtSinh.getText().equals("") || txtDia.getText().equals("")
+                || txtSu.getText().equals("") || txtQP.getText().equals("") || txtTin.getText().equals("") || txtGDCD.getText().equals("") || txtTheChat.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "One Or More Empty Field");
+            return false;
+        } else {
+            return true;
+        }
+    }
+//end verifile Text Score
     // begin funtion reset 
+
     public void resetFormStudent() {
         txtID.setText("");
         txtfullname.setText("");
         txaAddress.setText("");
         txtPhone.setText("");
         txtEmail.setText("");
+        jDateChooserBirthdate.setDate(null);
     }
 
     public void resetFormScore() {
@@ -179,13 +213,15 @@ public class Main_Menu extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         txtPhone = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jDateChooserBirthdate = new com.toedter.calendar.JDateChooser();
         scrTableStudent = new javax.swing.JScrollPane();
         tblStudents = new javax.swing.JTable();
         pnButtonStudent = new javax.swing.JPanel();
-        btnAdd = new javax.swing.JButton();
-        btnReset = new javax.swing.JButton();
-        btnUpdate = new javax.swing.JButton();
-        btnDelete = new javax.swing.JButton();
+        btnAddStudent = new javax.swing.JButton();
+        btnResetStudent = new javax.swing.JButton();
+        btnUpdateStudent = new javax.swing.JButton();
+        btnDeleteStudent = new javax.swing.JButton();
         jTextField3 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         pnScore = new javax.swing.JPanel();
@@ -228,23 +264,11 @@ public class Main_Menu extends javax.swing.JFrame {
         jTextField4 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         p3 = new javax.swing.JPanel();
-        jPanel6 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
-        jTextField2 = new javax.swing.JTextField();
-        jButton6 = new javax.swing.JButton();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
         setBackground(new java.awt.Color(51, 255, 255));
-        setMinimumSize(new java.awt.Dimension(1280, 700));
+        setMinimumSize(new java.awt.Dimension(1370, 700));
 
         pnMain.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         pnMain.setPreferredSize(new java.awt.Dimension(1280, 700));
@@ -316,7 +340,7 @@ public class Main_Menu extends javax.swing.JFrame {
         btnsearch.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         btnsearch.setForeground(new java.awt.Color(51, 51, 51));
         btnsearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/search-icon.png"))); // NOI18N
-        btnsearch.setText("SEARCH      ");
+        btnsearch.setText("THỐNG KÊ");
         btnsearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnsearchActionPerformed(evt);
@@ -367,7 +391,17 @@ public class Main_Menu extends javax.swing.JFrame {
 
         jLabel15.setText("Email:");
 
+        txtPhone.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPhoneKeyTyped(evt);
+            }
+        });
+
         jLabel16.setText("Phone:");
+
+        jLabel3.setText("Birthdate:");
+
+        jDateChooserBirthdate.setDateFormatString("yyyy-MM-dd");
 
         javax.swing.GroupLayout pnInforLayout = new javax.swing.GroupLayout(pnInfor);
         pnInfor.setLayout(pnInforLayout);
@@ -391,19 +425,26 @@ public class Main_Menu extends javax.swing.JFrame {
                     .addGroup(pnInforLayout.createSequentialGroup()
                         .addGroup(pnInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnInforLayout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addGap(45, 45, 45)
-                                .addComponent(rdbMale, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)
-                                .addComponent(rdbFemale, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pnInforLayout.createSequentialGroup()
                                 .addGroup(pnInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel8)
                                     .addComponent(jLabel7))
-                                .addGap(19, 19, 19)
+                                .addGap(18, 18, 18)
                                 .addGroup(pnInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtfullname, javax.swing.GroupLayout.DEFAULT_SIZE, 339, Short.MAX_VALUE)
-                                    .addComponent(txtID))))
+                                    .addComponent(txtfullname, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
+                                    .addComponent(txtID)))
+                            .addGroup(pnInforLayout.createSequentialGroup()
+                                .addGroup(pnInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel3))
+                                .addGroup(pnInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnInforLayout.createSequentialGroup()
+                                        .addGap(45, 45, 45)
+                                        .addComponent(rdbMale, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(28, 28, 28)
+                                        .addComponent(rdbFemale, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(pnInforLayout.createSequentialGroup()
+                                        .addGap(21, 21, 21)
+                                        .addComponent(jDateChooserBirthdate, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -425,6 +466,10 @@ public class Main_Menu extends javax.swing.JFrame {
                     .addComponent(rdbFemale))
                 .addGap(18, 18, 18)
                 .addGroup(pnInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jDateChooserBirthdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addGroup(pnInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel11)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -435,37 +480,37 @@ public class Main_Menu extends javax.swing.JFrame {
                 .addGroup(pnInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(99, 99, 99))
+                .addGap(58, 58, 58))
         );
 
         tblStudents.setAutoCreateRowSorter(true);
         tblStudents.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "FullName", "Gender", "Birthdate"
+                "ID", "FullName", "Gender", "Birthdate", "address", "phone", "email"
             }
         ));
         tblStudents.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -475,38 +520,38 @@ public class Main_Menu extends javax.swing.JFrame {
         });
         scrTableStudent.setViewportView(tblStudents);
 
-        btnAdd.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/save.png"))); // NOI18N
-        btnAdd.setText("ADD");
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+        btnAddStudent.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnAddStudent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/save.png"))); // NOI18N
+        btnAddStudent.setText("ADD");
+        btnAddStudent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
+                btnAddStudentActionPerformed(evt);
             }
         });
 
-        btnReset.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Clear-icon.png"))); // NOI18N
-        btnReset.setText("RESET");
-        btnReset.addActionListener(new java.awt.event.ActionListener() {
+        btnResetStudent.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        btnResetStudent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Clear-icon.png"))); // NOI18N
+        btnResetStudent.setText("RESET");
+        btnResetStudent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnResetActionPerformed(evt);
+                btnResetStudentActionPerformed(evt);
             }
         });
 
-        btnUpdate.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Text-Edit-icon.png"))); // NOI18N
-        btnUpdate.setText("UPDATE");
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+        btnUpdateStudent.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        btnUpdateStudent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Text-Edit-icon.png"))); // NOI18N
+        btnUpdateStudent.setText("UPDATE");
+        btnUpdateStudent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
+                btnUpdateStudentActionPerformed(evt);
             }
         });
 
-        btnDelete.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        btnDelete.setText("DELETE");
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+        btnDeleteStudent.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        btnDeleteStudent.setText("DELETE");
+        btnDeleteStudent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
+                btnDeleteStudentActionPerformed(evt);
             }
         });
 
@@ -516,13 +561,13 @@ public class Main_Menu extends javax.swing.JFrame {
             pnButtonStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnButtonStudentLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAddStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(82, 82, 82)
-                .addComponent(btnReset)
+                .addComponent(btnResetStudent)
                 .addGap(73, 73, 73)
-                .addComponent(btnUpdate)
+                .addComponent(btnUpdateStudent)
                 .addGap(91, 91, 91)
-                .addComponent(btnDelete)
+                .addComponent(btnDeleteStudent)
                 .addGap(189, 189, 189))
         );
         pnButtonStudentLayout.setVerticalGroup(
@@ -530,10 +575,10 @@ public class Main_Menu extends javax.swing.JFrame {
             .addGroup(pnButtonStudentLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(pnButtonStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnUpdate)
-                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnResetStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAddStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUpdateStudent)
+                    .addComponent(btnDeleteStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -914,119 +959,15 @@ public class Main_Menu extends javax.swing.JFrame {
 
         p3.setPreferredSize(new java.awt.Dimension(1170, 524));
 
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel2.setText("Student Information");
-
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane4.setViewportView(jTable3);
-
-        jButton6.setText("Find");
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(236, 236, 236)
-                .addComponent(jLabel2)
-                .addGap(159, 159, 159)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(jButton6)
-                .addContainerGap(227, Short.MAX_VALUE))
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27))
-        );
-
-        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel4.setText("Study Details");
-
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane3.setViewportView(jTable2);
-
-        jButton5.setText("Find");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(249, 249, 249)
-                .addComponent(jLabel4)
-                .addGap(206, 206, 206)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton5)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(jButton5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
         javax.swing.GroupLayout p3Layout = new javax.swing.GroupLayout(p3);
         p3.setLayout(p3Layout);
         p3Layout.setHorizontalGroup(
             p3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, p3Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(p3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(24, 24, 24))
+            .addGap(0, 1170, Short.MAX_VALUE)
         );
         p3Layout.setVerticalGroup(
             p3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(p3Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 613, Short.MAX_VALUE)
         );
 
         pnlprinciple.add(p3, "card4");
@@ -1050,7 +991,6 @@ public class Main_Menu extends javax.swing.JFrame {
 
     private void btnScoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnScoreActionPerformed
 
-        //pnlmenu.setVisible(true);
         pnScore.setVisible(true);
         pnStudent.setVisible(false);
         p3.setVisible(false);
@@ -1062,7 +1002,6 @@ public class Main_Menu extends javax.swing.JFrame {
             LoginForm gl = new LoginForm();
             gl.setVisible(true);
             this.dispose();
-//            System.exit(0);
         }
     }//GEN-LAST:event_btnlogoutActionPerformed
 
@@ -1080,88 +1019,78 @@ public class Main_Menu extends javax.swing.JFrame {
         pnStudent.setVisible(false);
         p3.setVisible(true);
 
-        //        Search s = new Search();
-        //        s.setSize(620, 470);
-        //       jPanel2.add(s);
+
     }//GEN-LAST:event_btnsearchActionPerformed
 
     private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtIDActionPerformed
 
     private void rdbMaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbMaleActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_rdbMaleActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+    private void btnAddStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddStudentActionPerformed
         try {
-            StringBuilder sb = new StringBuilder();
-            if (txtfullname.getText().equals("")) {
-                sb.append("Vui long nhap ho ten");
-                txtfullname.setBackground(Color.red);
-            } else {
-                txtfullname.setBackground(Color.white);
+            if (verifTextStudent()) {
+                StudentDao dao = new StudentDao();
+                Student student = new Student();
+                SimpleDateFormat da = new SimpleDateFormat("yyyy-MM-dd");
+                student.setId(txtID.getText());
+                student.setFullName(txtfullname.getText());
+                if (rdbMale.isSelected()) {
+                    student.setGender("Nam");
+                } else {
+                    student.setGender("Nữ");
+                }
+                student.setBirthdate(da.format(jDateChooserBirthdate.getDate()));
+                student.setAddress(txaAddress.getText());
+                student.setPhoneNum(txtPhone.getText());
+                student.setEmail(txtEmail.getText());
+                if (dao.addStudent(student)) {
+                    JOptionPane.showMessageDialog(this, "Add thanh cong");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Add khong thanh cong");
+                }
+                resetFormStudent();
+                loadTableStudentData();
             }
-            if (sb.length() > 0) {
-                JOptionPane.showMessageDialog(this, sb.toString());
-                return;
-            }
-            StudentDao dao = new StudentDao();
-            Student student = new Student();
-            student.setId(txtID.getText());
-            student.setFullName(txtfullname.getText());
-            student.setGender(rdbMale.isSelected());
-            student.setAddress(txaAddress.getText());
-            student.setPhoneNum(txtPhone.getText());
-            student.setEmail(txtEmail.getText());
-            if (dao.addStudent(student)) {
-                JOptionPane.showMessageDialog(this, "Add thanh cong");
-            } else {
-                JOptionPane.showMessageDialog(this, "Add khong thanh cong");
-            }
-            resetFormStudent();
-            loadTableStudentData();
+
         } catch (Exception e) {
             JOptionPane.showConfirmDialog(this, "Error: " + e.getMessage());
         }
-    }//GEN-LAST:event_btnAddActionPerformed
+    }//GEN-LAST:event_btnAddStudentActionPerformed
 
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+    private void btnUpdateStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateStudentActionPerformed
         try {
-            StringBuilder sb = new StringBuilder();
-            if (txtfullname.getText().equals("")) {
-                sb.append("Vui long nhap ho ten");
-                txtfullname.setBackground(Color.red);
-            } else {
-                txtfullname.setBackground(Color.white);
+            if (verifTextStudent()) {
+                StudentDao dao = new StudentDao();
+                Student student = new Student();
+                SimpleDateFormat da = new SimpleDateFormat("yyyy-MM-dd");
+                student.setId(txtID.getText());
+                student.setFullName(txtfullname.getText());
+                if (rdbMale.isSelected()) {
+                    student.setGender("Nam");
+                } else {
+                    student.setGender("Nữ");
+                }
+                student.setBirthdate(da.format(jDateChooserBirthdate.getDate()));
+                student.setAddress(txaAddress.getText());
+                student.setPhoneNum(txtPhone.getText());
+                student.setEmail(txtEmail.getText());
+                if (dao.updateStudent(student)) {
+                    JOptionPane.showMessageDialog(this, "Update thanh cong");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Update khong thanh cong");
+                }
+                resetFormStudent();
+                loadTableStudentData();
             }
-            if (sb.length() > 0) {
-                JOptionPane.showMessageDialog(this, sb.toString());
-                return;
-            }
-            StudentDao dao = new StudentDao();
-            Student student = new Student();
-            student.setId(txtID.getText());
-            student.setFullName(txtfullname.getText());
-            student.setGender(rdbMale.isSelected());
-            student.setAddress(txaAddress.getText());
-            student.setPhoneNum(txtPhone.getText());
-            student.setEmail(txtEmail.getText());
-            if (dao.updateStudent(student)) {
-                JOptionPane.showMessageDialog(this, "Update thanh cong");
-            } else {
-                JOptionPane.showMessageDialog(this, "Update khong thanh cong");
-            }
-            resetFormStudent();
-            loadTableStudentData();
+
         } catch (Exception ex) {
             Logger.getLogger(Main_Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_btnUpdateActionPerformed
+    }//GEN-LAST:event_btnUpdateStudentActionPerformed
 
 
     private void tblStudentsMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblStudentsMousePressed
@@ -1174,11 +1103,16 @@ public class Main_Menu extends javax.swing.JFrame {
                 if (student != null) {
                     txtID.setText(student.getId());
                     txtfullname.setText(student.getFullName());
+                    if (student.getGender().equals("Nam")) {
+                        rdbMale.setSelected(true);
+                    } else {
+                        rdbFemale.setSelected(true);
+                    }
+                    SimpleDateFormat da = new SimpleDateFormat("yyyy-MM-dd");
+                    jDateChooserBirthdate.setDate(da.parse(student.getBirthdate()));
                     txaAddress.setText(student.getAddress());
                     txtPhone.setText(student.getPhoneNum());
                     txtEmail.setText(student.getEmail());
-                    rdbMale.setSelected(student.isGender());
-                    rdbFemale.setSelected(!student.isGender());
                 }
             }
         } catch (Exception e) {
@@ -1186,7 +1120,7 @@ public class Main_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_tblStudentsMousePressed
     }
 
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+    private void btnDeleteStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteStudentActionPerformed
 
         try {
             StringBuilder sb = new StringBuilder();
@@ -1215,10 +1149,10 @@ public class Main_Menu extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(Main_Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_btnDeleteActionPerformed
+    }//GEN-LAST:event_btnDeleteStudentActionPerformed
 
     private void txtIDScoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDScoreActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtIDScoreActionPerformed
 
     private void tblScoreMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblScoreMousePressed
@@ -1253,41 +1187,44 @@ public class Main_Menu extends javax.swing.JFrame {
 
     private void btnAddScoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddScoreActionPerformed
         try {
-            StringBuilder sb = new StringBuilder();
-            if (txtfullnameScore.getText().equals("")) {
-                sb.append("Vui long nhap ho ten");
-                txtfullnameScore.setBackground(Color.red);
-            } else {
-                txtfullnameScore.setBackground(Color.white);
-            }
-            if (sb.length() > 0) {
-                JOptionPane.showMessageDialog(this, sb.toString());
-                return;
-            }
-            ScoreDao dao = new ScoreDao();
-            Score score = new Score();
-            score.setId(txtIDScore.getText());
-            score.setFullname(txtfullnameScore.getText());
-            score.setToan(Float.parseFloat(txtToan.getText()));
-            score.setVan(Float.parseFloat(txtVan.getText()));
-            score.setAnh(Float.parseFloat(txtAnh.getText()));
-            score.setLy(Float.parseFloat(txtLy.getText()));
-            score.setHoa(Float.parseFloat(txtHoa.getText()));
-            score.setSinh(Float.parseFloat(txtSinh.getText()));
-            score.setDia(Float.parseFloat(txtDia.getText()));
-            score.setSu(Float.parseFloat(txtSu.getText()));
-            score.setQuocphong(Float.parseFloat(txtQP.getText()));
-            score.setTin(Float.parseFloat(txtTin.getText()));
-            score.setGdcd(Float.parseFloat(txtGDCD.getText()));
-            score.setThechat(Float.parseFloat(txtTheChat.getText()));
+//            StringBuilder sb = new StringBuilder();
+//            if (txtfullnameScore.getText().equals("")) {
+//                sb.append("Vui long nhap ho ten");
+//                txtfullnameScore.setBackground(Color.red);
+//            } else {
+//                txtfullnameScore.setBackground(Color.white);
+//            }
+//            if (sb.length() > 0) {
+//                JOptionPane.showMessageDialog(this, sb.toString());
+//                return;
+//            }
+            if (verifiTextScore()) {
+                ScoreDao dao = new ScoreDao();
+                Score score = new Score();
+                score.setId(txtIDScore.getText());
+                score.setFullname(txtfullnameScore.getText());
+                score.setToan(Float.parseFloat(txtToan.getText()));
+                score.setVan(Float.parseFloat(txtVan.getText()));
+                score.setAnh(Float.parseFloat(txtAnh.getText()));
+                score.setLy(Float.parseFloat(txtLy.getText()));
+                score.setHoa(Float.parseFloat(txtHoa.getText()));
+                score.setSinh(Float.parseFloat(txtSinh.getText()));
+                score.setDia(Float.parseFloat(txtDia.getText()));
+                score.setSu(Float.parseFloat(txtSu.getText()));
+                score.setQuocphong(Float.parseFloat(txtQP.getText()));
+                score.setTin(Float.parseFloat(txtTin.getText()));
+                score.setGdcd(Float.parseFloat(txtGDCD.getText()));
+                score.setThechat(Float.parseFloat(txtTheChat.getText()));
 
-            if (dao.addScore(score)) {
-                JOptionPane.showMessageDialog(this, "Add thanh cong");
-            } else {
-                JOptionPane.showMessageDialog(this, "Add khong thanh cong");
+                if (dao.addScore(score)) {
+                    JOptionPane.showMessageDialog(this, "Add thanh cong");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Add khong thanh cong");
+                }
+                resetFormScore();
+                loadTableScoretData();
             }
-            resetFormScore();
-            loadTableScoretData();
+
         } catch (Exception e) {
             JOptionPane.showConfirmDialog(this, "Error: " + e.getMessage());
         }
@@ -1365,27 +1302,34 @@ public class Main_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDeleteScoreActionPerformed
 
     private void txtToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtToanActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtToanActionPerformed
 
     private void txtHoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHoaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtHoaActionPerformed
 
+    }//GEN-LAST:event_txtHoaActionPerformed
+    //methol reset form score 
     private void btnResetScoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetScoreActionPerformed
         resetFormScore();
     }//GEN-LAST:event_btnResetScoreActionPerformed
-
-    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+    //  methol reset form students
+    private void btnResetStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetStudentActionPerformed
         resetFormStudent();
-    }//GEN-LAST:event_btnResetActionPerformed
+    }//GEN-LAST:event_btnResetStudentActionPerformed
+
+    private void txtPhoneKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPhoneKeyTyped
+        // allow only number:
+        if (!Character.isDigit(evt.getKeyChar())) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtPhoneKeyTyped
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
-        
+
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -1407,7 +1351,7 @@ public class Main_Menu extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Main_Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -1417,23 +1361,22 @@ public class Main_Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnAddScore;
-    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnAddStudent;
     private javax.swing.JButton btnDeleteScore;
-    private javax.swing.JButton btnReset;
+    private javax.swing.JButton btnDeleteStudent;
     private javax.swing.JButton btnResetScore;
+    private javax.swing.JButton btnResetStudent;
     private javax.swing.JButton btnScore;
     private javax.swing.JButton btnStudent;
-    private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnUpdateScore;
+    private javax.swing.JButton btnUpdateStudent;
     private javax.swing.JButton btnlogout;
     private javax.swing.JButton btnsearch;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
+    private com.toedter.calendar.JDateChooser jDateChooserBirthdate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1441,7 +1384,6 @@ public class Main_Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -1452,21 +1394,13 @@ public class Main_Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JPanel p3;
@@ -1506,7 +1440,4 @@ public class Main_Menu extends javax.swing.JFrame {
     private javax.swing.JTextField txtfullnameScore;
     // End of variables declaration//GEN-END:variables
 
-    private void setIcon() {
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("icon.png")));
-    }
 }

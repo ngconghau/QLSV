@@ -16,6 +16,10 @@ import java.util.logging.Logger;
  */
 public class LoginForm extends javax.swing.JFrame {
 
+    private void setIcon() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("icon.png")));
+    }
+
     /**
      * Creates new form LoginForm
      */
@@ -182,13 +186,12 @@ public class LoginForm extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Invalid username or password");
             }
         } catch (Exception ex) {
-           JOptionPane.showMessageDialog(this, "Error: "+ex.getMessage());
+            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
         }
     }//GEN-LAST:event_btnLoginActionPerformed
     private boolean checkLogin(String username, String password) {
         String sql = "select * from Users where username = ? and password = ?";
-        try (
-                 Connection con = DatabaseUtils.openConnection();  PreparedStatement pstmt = con.prepareStatement(sql)) {
+        try ( Connection con = DatabaseUtils.openConnection();PreparedStatement pstmt = con.prepareStatement(sql)) {
             pstmt.setString(1, username);
             pstmt.setString(2, password);
 
@@ -252,8 +255,4 @@ public class LoginForm extends javax.swing.JFrame {
     private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
 
-    private void setIcon() {
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("icon.png")));
-    }
 }
-

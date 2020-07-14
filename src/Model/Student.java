@@ -4,29 +4,33 @@
  * and open the template in the editor.
  */
 package Model;
-
-import java.util.Date;
-import javax.swing.JTextField;
-
 /**
  *
  * @author banhg
  */
 public class Student {
-    private String id,fullName,address,phoneNum,email;
+    private String id,fullName,birthdate,address,phoneNum,email, gender;
    
-    private boolean gender;
 
     public Student() {
     }
     
-    public Student(String id, String fullName, String address, String phoneNum, String email, Date birthDate, boolean gender) {
+    public Student(String id, String fullName,String birthdate, String address, String phoneNum, String email, String gender) {
         this.id = id;
         this.fullName = fullName;
+        this.birthdate= birthdate;
         this.address = address;
         this.phoneNum = phoneNum;
         this.email = email;
         this.gender = gender;
+    }
+
+    public String getBirthdate() {
+        return birthdate;
+    }
+
+    public void setBirthdate(String birthdate) {
+        this.birthdate = birthdate;
     }
     
     public String getId() {
@@ -69,18 +73,11 @@ public class Student {
         this.email = email;
     }
 
-
-
-    public boolean isGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(boolean gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
-
-    public void setBirthDate(JTextField txtBirthdate) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }
