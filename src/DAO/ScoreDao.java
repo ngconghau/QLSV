@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Model;
+package DAO;
 import DB.DatabaseUtils;
+import Model.Score;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -17,14 +18,40 @@ import java.util.List;
  */
 public class ScoreDao {
     public boolean addScore(Score s) throws Exception {
-        String sql = "insert into Scores(id,fullname,Toan,Van,Anh,Ly,Hoa,Sinh,Dia,Su,QP,Tin,GDCD,The)"
-                + " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "insert into Scores(id,fullname,hanhkiem,Toan,Van,Anh,Ly,Hoa,Sinh,Dia,Su,QP,Tin,GDCD,Thechat,DTB)"
+                + " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         try (
             Connection con = DatabaseUtils.openConnection();  
                 PreparedStatement pstmt = con.prepareStatement(sql);) {
            pstmt.setString(1, s.getId());
            pstmt.setString(2, s.getFullname());
+           pstmt.setString(3, s.getHanhKiem());
+           pstmt.setFloat(4, s.getToan());
+           pstmt.setFloat(5, s.getVan());
+           pstmt.setFloat(6, s.getAnh());
+           pstmt.setFloat(7, s.getLy());
+           pstmt.setFloat(8, s.getHoa());
+           pstmt.setFloat(9, s.getSinh());
+           pstmt.setFloat(10, s.getDia());
+           pstmt.setFloat(11, s.getSu());
+           pstmt.setFloat(12, s.getQuocphong());
+           pstmt.setFloat(13, s.getTin());
+           pstmt.setFloat(14, s.getGdcd());
+           pstmt.setFloat(15, s.getThechat());
+           pstmt.setFloat(16, s.getDtb());
+            return pstmt.executeUpdate() > 0;
+        }
+    }
+    public boolean updateScore(Score s) throws Exception {
+        String sql = "update Scores set fullname = ?, hanhkiem = ?,Toan = ?, Van = ?, Anh = ?, Ly = ?, Hoa = ?, Sinh = ?,Dia = ?, Su= ?, QP = ?, Tin = ?, GDCD = ?, Thechat = ?, DTB = ? where id = ?";
+                      
+
+        try (
+            Connection con = DatabaseUtils.openConnection();  PreparedStatement pstmt = con.prepareStatement(sql);) {
+            pstmt.setString(16, s.getId());
+            pstmt.setString(1, s.getFullname());
+            pstmt.setString(2, s.getHanhKiem());
            pstmt.setFloat(3, s.getToan());
            pstmt.setFloat(4, s.getVan());
            pstmt.setFloat(5, s.getAnh());
@@ -37,29 +64,7 @@ public class ScoreDao {
            pstmt.setFloat(12, s.getTin());
            pstmt.setFloat(13, s.getGdcd());
            pstmt.setFloat(14, s.getThechat());
-            return pstmt.executeUpdate() > 0;
-        }
-    }
-    public boolean updateScore(Score s) throws Exception {
-        String sql = "update Scores set fullname = ?, Toan = ?, Van = ?, Anh = ?, Ly = ?, Hoa = ?, Sinh = ?,Dia = ?, Su= ?, QP = ?, Tin = ?, GDCD = ?, The = ? where id = ?";
-                      
-
-        try (
-            Connection con = DatabaseUtils.openConnection();  PreparedStatement pstmt = con.prepareStatement(sql);) {
-            pstmt.setString(14, s.getId());
-            pstmt.setString(1, s.getFullname());
-           pstmt.setFloat(2, s.getToan());
-           pstmt.setFloat(3, s.getVan());
-           pstmt.setFloat(4, s.getAnh());
-           pstmt.setFloat(5, s.getLy());
-           pstmt.setFloat(6, s.getHoa());
-           pstmt.setFloat(7, s.getSinh());
-           pstmt.setFloat(8, s.getDia());
-           pstmt.setFloat(9, s.getSu());
-           pstmt.setFloat(10, s.getQuocphong());
-           pstmt.setFloat(11, s.getTin());
-           pstmt.setFloat(12, s.getGdcd());
-           pstmt.setFloat(13, s.getThechat());
+           pstmt.setFloat(15, s.getDtb());
             return pstmt.executeUpdate() > 0;
         }
     }
@@ -86,6 +91,7 @@ public class ScoreDao {
                 Score score = new Score();
                 score.setId(rs.getString("ID"));
                 score.setFullname(rs.getString("FullName"));
+                score.setHanhKiem(rs.getString("HanhKiem"));
                 score.setToan(rs.getFloat("Toan"));
                 score.setVan(rs.getFloat("Van"));
                 score.setAnh(rs.getFloat("Anh"));
@@ -97,7 +103,8 @@ public class ScoreDao {
                 score.setQuocphong(rs.getFloat("QP"));
                 score.setTin(rs.getFloat("Tin"));
                 score.setGdcd(rs.getFloat("GDCD"));
-                score.setThechat(rs.getFloat("The"));
+                score.setThechat(rs.getFloat("Thechat"));
+                score.setDtb(rs.getFloat("DTB"));
                 
                 return score;
             }
@@ -117,6 +124,7 @@ public class ScoreDao {
                 Score score = new Score();
                 score.setId(rs.getString("ID"));
                 score.setFullname(rs.getString("FullName"));
+                score.setHanhKiem(rs.getString("HanhKiem"));
                 score.setToan(rs.getFloat("Toan"));
                 score.setVan(rs.getFloat("Van"));
                 score.setAnh(rs.getFloat("Anh"));
@@ -128,7 +136,8 @@ public class ScoreDao {
                 score.setQuocphong(rs.getFloat("QP"));
                 score.setTin(rs.getFloat("Tin"));
                 score.setGdcd(rs.getFloat("GDCD"));
-                score.setThechat(rs.getFloat("The"));
+                score.setThechat(rs.getFloat("Thechat"));
+                score.setDtb(rs.getFloat("DTB"));
                 
                 
                list.add(score);

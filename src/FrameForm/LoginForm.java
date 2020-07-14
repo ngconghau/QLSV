@@ -5,7 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import DB.DatabaseUtils;
-import Model.UserDao;
+import DAO.UserDao;
 import java.awt.Toolkit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
