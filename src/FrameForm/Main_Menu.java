@@ -88,7 +88,7 @@ public class Main_Menu extends javax.swing.JFrame {
 
     public void initTableScoreModel() {
         String[] columnHeaders = new String[]{
-            "ID", "Name","Hạnh Kiểm", "Toán", "Văn", "Anh", "Lý", "Hóa", "ĐSinh", "Địa", "Sử", "QP", "Tin", "GDCD", "GDTC","DTB"
+            "ID", "Name", "Toán", "Văn", "Anh", "Lý", "Hóa", "ĐSinh", "Địa", "Sử", "QP", "Tin", "GDCD", "GDTC", "Hạnh Kiểm", "DTB"
         };
         dtmScore = new DefaultTableModel();
         dtmScore.setColumnIdentifiers(columnHeaders);
@@ -107,7 +107,6 @@ public class Main_Menu extends javax.swing.JFrame {
                 Vector row = new Vector();
                 row.add(score.getId());
                 row.add(score.getFullname());
-                row.add(score.getHanhKiem());
                 row.add(score.getToan());
                 row.add(score.getVan());
                 row.add(score.getAnh());
@@ -120,6 +119,7 @@ public class Main_Menu extends javax.swing.JFrame {
                 row.add(score.getTin());
                 row.add(score.getGdcd());
                 row.add(score.getThechat());
+                row.add(score.getHanhKiem());
                 row.add(score.getDtb());
 
                 dtmScore.addRow(row);
@@ -173,7 +173,7 @@ public class Main_Menu extends javax.swing.JFrame {
     public void resetFormScore() {
         txtIDScore.setText("");
         txtfullnameScore.setText("");
-        txtHanhKiem.setText("");
+        jComboBox1.setSelectedItem("Xuất sắc");
         txtToan.setText("");
         txtVan.setText("");
         txtAnh.setText("");
@@ -261,10 +261,10 @@ public class Main_Menu extends javax.swing.JFrame {
         txtSu = new javax.swing.JTextField();
         txtDia = new javax.swing.JTextField();
         jLabel30 = new javax.swing.JLabel();
-        txtHanhKiem = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
-        txtDTB = new javax.swing.JTextField();
+        txtDTB = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
         scrTableScore = new javax.swing.JScrollPane();
         tblScore = new javax.swing.JTable();
         jPanel7 = new javax.swing.JPanel();
@@ -699,15 +699,13 @@ public class Main_Menu extends javax.swing.JFrame {
 
         jLabel30.setText("ĐỊA LÝ");
 
-        txtHanhKiem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtHanhKiemActionPerformed(evt);
-            }
-        });
-
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel13.setText("Hạnh Kiểm");
 
-        jLabel31.setText("DTB");
+        jLabel31.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel31.setText("ĐTB:");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Xuất sắc", "Tốt", "Khá", "Trung bình", "Yếu" }));
 
         javax.swing.GroupLayout pnScoreforSubLayout = new javax.swing.GroupLayout(pnScoreforSub);
         pnScoreforSub.setLayout(pnScoreforSubLayout);
@@ -727,12 +725,8 @@ public class Main_Menu extends javax.swing.JFrame {
                                 .addComponent(txtIDScore, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(pnScoreforSubLayout.createSequentialGroup()
-                        .addGroup(pnScoreforSubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnScoreforSubLayout.createSequentialGroup()
-                                .addComponent(jLabel13)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtHanhKiem))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnScoreforSubLayout.createSequentialGroup()
+                        .addGroup(pnScoreforSubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(pnScoreforSubLayout.createSequentialGroup()
                                 .addGroup(pnScoreforSubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel19)
                                     .addComponent(jLabel22)
@@ -748,12 +742,17 @@ public class Main_Menu extends javax.swing.JFrame {
                                     .addComponent(txtLy, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
                                     .addComponent(txtHoa)
                                     .addComponent(txtSinh)
-                                    .addComponent(txtToan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(46, 46, 46)
+                                    .addComponent(txtToan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(46, 46, 46))
+                            .addGroup(pnScoreforSubLayout.createSequentialGroup()
+                                .addComponent(jLabel13)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12)))
                         .addGroup(pnScoreforSubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnScoreforSubLayout.createSequentialGroup()
-                                .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
                                 .addComponent(txtTheChat, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnScoreforSubLayout.createSequentialGroup()
                                 .addComponent(jLabel29)
@@ -764,22 +763,21 @@ public class Main_Menu extends javax.swing.JFrame {
                                 .addGap(36, 36, 36)
                                 .addComponent(txtDia, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnScoreforSubLayout.createSequentialGroup()
-                                .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtGDCD, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnScoreforSubLayout.createSequentialGroup()
-                                .addGroup(pnScoreforSubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(39, 39, 39)
-                                .addGroup(pnScoreforSubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtQP, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtTin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnScoreforSubLayout.createSequentialGroup()
                                 .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtDTB, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(80, Short.MAX_VALUE))
+                                .addComponent(txtDTB, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnScoreforSubLayout.createSequentialGroup()
+                                .addGroup(pnScoreforSubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnScoreforSubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(pnScoreforSubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtQP, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtTin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtGDCD, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         pnScoreforSubLayout.setVerticalGroup(
             pnScoreforSubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -793,11 +791,12 @@ public class Main_Menu extends javax.swing.JFrame {
                     .addComponent(jLabel12)
                     .addComponent(txtfullnameScore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
-                .addGroup(pnScoreforSubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(txtHanhKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDTB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pnScoreforSubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtDTB, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnScoreforSubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel13)
+                        .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnScoreforSubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnScoreforSubLayout.createSequentialGroup()
@@ -936,7 +935,7 @@ public class Main_Menu extends javax.swing.JFrame {
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap(125, Short.MAX_VALUE)
+                .addContainerGap(35, Short.MAX_VALUE)
                 .addComponent(btnAddScore, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(82, 82, 82)
                 .addComponent(btnResetScore)
@@ -974,15 +973,15 @@ public class Main_Menu extends javax.swing.JFrame {
                         .addComponent(pnScoreforSub, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(pnScoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnScoreLayout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(scrTableScore, javax.swing.GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE)
-                                .addGap(14, 14, 14))
-                            .addGroup(pnScoreLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton2)
-                                .addGap(104, 104, 104))))))
+                                .addGap(104, 104, 104))
+                            .addGroup(pnScoreLayout.createSequentialGroup()
+                                .addGap(5, 5, 5)
+                                .addComponent(scrTableScore)
+                                .addContainerGap())))))
         );
         pnScoreLayout.setVerticalGroup(
             pnScoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1100,7 +1099,7 @@ public class Main_Menu extends javax.swing.JFrame {
                 } else {
                     JOptionPane.showMessageDialog(this, "Add khong thanh cong");
                 }
-                
+
                 loadTableStudentData();
             }
 
@@ -1131,7 +1130,7 @@ public class Main_Menu extends javax.swing.JFrame {
                 } else {
                     JOptionPane.showMessageDialog(this, "Update khong thanh cong");
                 }
-                
+
                 loadTableStudentData();
             }
 
@@ -1213,7 +1212,23 @@ public class Main_Menu extends javax.swing.JFrame {
                 if (score != null) {
                     txtIDScore.setText(score.getId());
                     txtfullnameScore.setText(score.getFullname());
-                    txtHanhKiem.setText(score.getHanhKiem());
+                    switch (score.getHanhKiem()) {
+                        case "Xuất sắc":
+                            jComboBox1.setSelectedItem("Xuất sắc");
+                            break;
+                        case "Tốt":
+                            jComboBox1.setSelectedItem("Tốt");
+                            break;
+                        case "Khá":
+                            jComboBox1.setSelectedItem("Khá");
+                            break;
+                        case "Trung bình":
+                            jComboBox1.setSelectedItem("Trung bình");
+                            break;
+                        default:
+                            jComboBox1.setSelectedItem("Yếu");
+                            break;
+                    }
                     txtToan.setText(Float.toString(score.getToan()));
                     txtVan.setText(Float.toString(score.getVan()));
                     txtAnh.setText(Float.toString(score.getAnh()));
@@ -1227,7 +1242,6 @@ public class Main_Menu extends javax.swing.JFrame {
                     txtGDCD.setText(Float.toString(score.getGdcd()));
                     txtTheChat.setText(Float.toString(score.getThechat()));
                     txtDTB.setText(Float.toString(score.getDtb()));
-
                 }
             }
         } catch (Exception e) {
@@ -1237,23 +1251,12 @@ public class Main_Menu extends javax.swing.JFrame {
 
     private void btnAddScoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddScoreActionPerformed
         try {
-//            StringBuilder sb = new StringBuilder();
-//            if (txtfullnameScore.getText().equals("")) {
-//                sb.append("Vui long nhap ho ten");
-//                txtfullnameScore.setBackground(Color.red);
-//            } else {
-//                txtfullnameScore.setBackground(Color.white);
-//            }
-//            if (sb.length() > 0) {
-//                JOptionPane.showMessageDialog(this, sb.toString());
-//                return;
-//            }
             if (verifiTextScore()) {
                 ScoreDao dao = new ScoreDao();
                 Score score = new Score();
                 score.setId(txtIDScore.getText());
                 score.setFullname(txtfullnameScore.getText());
-                score.setHanhKiem(txtHanhKiem.getText());
+                score.setHanhKiem(jComboBox1.getSelectedItem().toString());
                 score.setToan(Float.parseFloat(txtToan.getText()));
                 score.setVan(Float.parseFloat(txtVan.getText()));
                 score.setAnh(Float.parseFloat(txtAnh.getText()));
@@ -1266,8 +1269,6 @@ public class Main_Menu extends javax.swing.JFrame {
                 score.setTin(Float.parseFloat(txtTin.getText()));
                 score.setGdcd(Float.parseFloat(txtGDCD.getText()));
                 score.setThechat(Float.parseFloat(txtTheChat.getText()));
-                score.setDtb(Float.parseFloat(txtDTB.getText()));
-
                 if (dao.addScore(score)) {
                     JOptionPane.showMessageDialog(this, "Add thanh cong");
                 } else {
@@ -1284,42 +1285,32 @@ public class Main_Menu extends javax.swing.JFrame {
 
     private void btnUpdateScoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateScoreActionPerformed
         try {
-            StringBuilder sb = new StringBuilder();
-            if (txtfullnameScore.getText().equals("")) {
-                sb.append("Vui long nhap ho ten");
-                txtfullnameScore.setBackground(Color.red);
-            } else {
-                txtfullnameScore.setBackground(Color.white);
+            if (verifiTextScore()) {
+                ScoreDao dao = new ScoreDao();
+                Score score = new Score();
+                score.setId(txtIDScore.getText());
+                score.setFullname(txtfullnameScore.getText());
+                score.setHanhKiem(jComboBox1.getSelectedItem().toString());
+                score.setToan(Float.parseFloat(txtToan.getText()));
+                score.setVan(Float.parseFloat(txtVan.getText()));
+                score.setAnh(Float.parseFloat(txtAnh.getText()));
+                score.setLy(Float.parseFloat(txtLy.getText()));
+                score.setHoa(Float.parseFloat(txtHoa.getText()));
+                score.setSinh(Float.parseFloat(txtSinh.getText()));
+                score.setDia(Float.parseFloat(txtDia.getText()));
+                score.setSu(Float.parseFloat(txtSu.getText()));
+                score.setQuocphong(Float.parseFloat(txtQP.getText()));
+                score.setTin(Float.parseFloat(txtTin.getText()));
+                score.setGdcd(Float.parseFloat(txtGDCD.getText()));
+                score.setThechat(Float.parseFloat(txtTheChat.getText()));
+                if (dao.updateScore(score)) {
+                    JOptionPane.showMessageDialog(this, "Update thanh cong");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Update khong thanh cong");
+                }
+                resetFormScore();
+                loadTableScoretData();
             }
-            if (sb.length() > 0) {
-                JOptionPane.showMessageDialog(this, sb.toString());
-                return;
-            }
-            ScoreDao dao = new ScoreDao();
-            Score score = new Score();
-            score.setId(txtIDScore.getText());
-            score.setFullname(txtfullnameScore.getText());
-            score.setHanhKiem(txtHanhKiem.getText());
-            score.setToan(Float.parseFloat(txtToan.getText()));
-            score.setVan(Float.parseFloat(txtVan.getText()));
-            score.setAnh(Float.parseFloat(txtAnh.getText()));
-            score.setLy(Float.parseFloat(txtLy.getText()));
-            score.setHoa(Float.parseFloat(txtHoa.getText()));
-            score.setSinh(Float.parseFloat(txtSinh.getText()));
-            score.setDia(Float.parseFloat(txtDia.getText()));
-            score.setSu(Float.parseFloat(txtSu.getText()));
-            score.setQuocphong(Float.parseFloat(txtQP.getText()));
-            score.setTin(Float.parseFloat(txtTin.getText()));
-            score.setGdcd(Float.parseFloat(txtGDCD.getText()));
-            score.setThechat(Float.parseFloat(txtTheChat.getText()));
-            score.setDtb(Float.parseFloat(txtDTB.getText()));
-            if (dao.updateScore(score)) {
-                JOptionPane.showMessageDialog(this, "Update thanh cong");
-            } else {
-                JOptionPane.showMessageDialog(this, "Update khong thanh cong");
-            }
-            resetFormScore();
-            loadTableScoretData();
         } catch (Exception ex) {
             Logger.getLogger(Main_Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1378,18 +1369,13 @@ public class Main_Menu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtPhoneKeyTyped
 
-    private void txtHanhKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHanhKiemActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtHanhKiemActionPerformed
-
     private void txtDiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDiaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDiaActionPerformed
 
     private void txtIDScoreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDScoreKeyPressed
-       
-      
-        
+
+
     }//GEN-LAST:event_txtIDScoreKeyPressed
 
     /**
@@ -1444,6 +1430,7 @@ public class Main_Menu extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox<String> jComboBox1;
     private com.toedter.calendar.JDateChooser jDateChooserBirthdate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1491,11 +1478,10 @@ public class Main_Menu extends javax.swing.JFrame {
     private javax.swing.JTable tblStudents;
     private javax.swing.JTextArea txaAddress;
     private javax.swing.JTextField txtAnh;
-    private javax.swing.JTextField txtDTB;
+    private javax.swing.JLabel txtDTB;
     private javax.swing.JTextField txtDia;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtGDCD;
-    private javax.swing.JTextField txtHanhKiem;
     private javax.swing.JTextField txtHoa;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtIDScore;
