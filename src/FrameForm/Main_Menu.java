@@ -171,8 +171,22 @@ public class Main_Menu extends javax.swing.JFrame {
         if (txtIDScore.getText().equals("") || txtfullnameScore.getText().equals("") || txtToan.getText().equals("")
                 || txtVan.getText().equals("") || txtAnh.getText().equals("") || txtLy.getText().equals("")
                 || txtHoa.getText().equals("") || txtSinh.getText().equals("") || txtDia.getText().equals("")
-                || txtSu.getText().equals("") || txtQP.getText().equals("") || txtTin.getText().equals("") || txtGDCD.getText().equals("") || txtTheChat.getText().equals("")) {
+                || txtSu.getText().equals("") || txtQP.getText().equals("") || txtTin.getText().equals("")
+                || txtGDCD.getText().equals("") || txtTheChat.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "One Or More Empty Field");
+            return false;
+        } else if ((Float.parseFloat(txtToan.getText()) > 10) || (Float.parseFloat(txtToan.getText()) < 0)
+                || (Float.parseFloat(txtVan.getText()) > 10) || (Float.parseFloat(txtVan.getText()) < 0)
+                || (Float.parseFloat(txtAnh.getText()) > 10) || (Float.parseFloat(txtAnh.getText()) < 0)
+                || (Float.parseFloat(txtLy.getText()) > 10) || (Float.parseFloat(txtLy.getText()) < 0)
+                || (Float.parseFloat(txtHoa.getText()) > 10) || (Float.parseFloat(txtHoa.getText()) < 0)
+                || (Float.parseFloat(txtSinh.getText()) > 10) || (Float.parseFloat(txtSinh.getText()) < 0)
+                || (Float.parseFloat(txtSu.getText()) > 10) || (Float.parseFloat(txtSu.getText()) < 0)
+                || (Float.parseFloat(txtDia.getText()) > 10) || (Float.parseFloat(txtDia.getText()) < 0)
+                || (Float.parseFloat(txtQP.getText()) > 10) || (Float.parseFloat(txtQP.getText()) < 0)
+                || (Float.parseFloat(txtTin.getText()) > 10) || (Float.parseFloat(txtTin.getText()) < 0)
+                || (Float.parseFloat(txtTheChat.getText()) > 10) || (Float.parseFloat(txtTheChat.getText()) < 0)) {
+            JOptionPane.showMessageDialog(null, "ERROR!!! One or more score fields have negative numbers or greater than 10!!!");
             return false;
         } else {
             return true;
