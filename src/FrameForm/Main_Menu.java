@@ -9,6 +9,7 @@ import DAO.ScoreDao;
 import Model.Score;
 import Model.Student;
 import DAO.StudentDao;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.util.List;
@@ -21,9 +22,11 @@ import javax.swing.table.DefaultTableModel;
 import java.lang.Float;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.awt.event.KeyEvent;
-import DB.DatabaseUtils;
-import java.util.ArrayList;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.general.DefaultPieDataset;
+import org.jfree.data.general.PieDataset;
 
 /**
  *
@@ -35,6 +38,24 @@ public class Main_Menu extends javax.swing.JFrame {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("icon.png")));
     }
     DefaultTableModel dtmStudent, dtmScore;
+
+    private static JFreeChart createChart(PieDataset dataset) {
+        JFreeChart chart = ChartFactory.createPieChart(
+                "CƠ CẤU TỶ LỆ XẾP LOẠI HỌC SINH", dataset, true, true, true);
+        return chart;
+    }
+
+    private static PieDataset createDataset() throws Exception {
+        ScoreDao dao = new ScoreDao();
+        List<Score> list = dao.getScore();
+        DefaultPieDataset dataset = new DefaultPieDataset();
+        dataset.setValue("Học sinh giỏi", new Float(dao.getHSGioi() * 10));
+        dataset.setValue("Học sinh khá", new Float(dao.getHSKha() * 10));
+        dataset.setValue("Học sinh trung bình", new Float(dao.getHSTB() * 10));
+        dataset.setValue("Học sinh yếu", new Float(dao.getHSYeu() * 10));
+
+        return dataset;
+    }
 
     /**
      * Creates new form Main_Menu
@@ -73,7 +94,6 @@ public class Main_Menu extends javax.swing.JFrame {
                 row.add(student.getId());
                 row.add(student.getFullName());
                 row.add(student.getGender());
-//                row.add(student.isGender());
                 row.add(student.getBirthdate());
                 row.add(student.getAddress());
                 row.add(student.getPhoneNum());
@@ -102,7 +122,7 @@ public class Main_Menu extends javax.swing.JFrame {
             }
 
             ScoreDao dao = new ScoreDao();
-            List<Score> list = dao.findScore();
+            List<Score> list = dao.getScore();
             for (Score score : list) {
                 Vector row = new Vector();
                 row.add(score.getId());
@@ -229,8 +249,8 @@ public class Main_Menu extends javax.swing.JFrame {
         btnResetStudent = new javax.swing.JButton();
         btnUpdateStudent = new javax.swing.JButton();
         btnDeleteStudent = new javax.swing.JButton();
-        jTextField3 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        txtSearchStudent = new javax.swing.JTextField();
+        btnSearchStudent = new javax.swing.JButton();
         pnScore = new javax.swing.JPanel();
         pnScoreforSub = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
@@ -593,7 +613,12 @@ public class Main_Menu extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton1.setText("Find");
+        btnSearchStudent.setText("Find");
+        btnSearchStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchStudentActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnStudentLayout = new javax.swing.GroupLayout(pnStudent);
         pnStudent.setLayout(pnStudentLayout);
@@ -614,9 +639,9 @@ public class Main_Menu extends javax.swing.JFrame {
                                 .addGap(14, 14, 14))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnStudentLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtSearchStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton1)
+                                .addComponent(btnSearchStudent)
                                 .addGap(53, 53, 53))))))
         );
         pnStudentLayout.setVerticalGroup(
@@ -627,8 +652,8 @@ public class Main_Menu extends javax.swing.JFrame {
                     .addComponent(pnInfor, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pnStudentLayout.createSequentialGroup()
                         .addGroup(pnStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnSearchStudent)
+                            .addComponent(txtSearchStudent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(scrTableStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(32, 32, 32)
@@ -705,7 +730,7 @@ public class Main_Menu extends javax.swing.JFrame {
         jLabel31.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel31.setText("ĐTB:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Xuất sắc", "Tốt", "Khá", "Trung bình", "Yếu" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tốt", "Khá", "Trung bình", "Yếu" }));
 
         javax.swing.GroupLayout pnScoreforSubLayout = new javax.swing.GroupLayout(pnScoreforSub);
         pnScoreforSub.setLayout(pnScoreforSubLayout);
@@ -1005,18 +1030,7 @@ public class Main_Menu extends javax.swing.JFrame {
         pnlprinciple.add(pnScore, "card2");
 
         p3.setPreferredSize(new java.awt.Dimension(1170, 524));
-
-        javax.swing.GroupLayout p3Layout = new javax.swing.GroupLayout(p3);
-        p3.setLayout(p3Layout);
-        p3Layout.setHorizontalGroup(
-            p3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1170, Short.MAX_VALUE)
-        );
-        p3Layout.setVerticalGroup(
-            p3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 613, Short.MAX_VALUE)
-        );
-
+        p3.setLayout(new java.awt.BorderLayout());
         pnlprinciple.add(p3, "card4");
 
         pnMain.add(pnlprinciple, java.awt.BorderLayout.CENTER);
@@ -1062,9 +1076,18 @@ public class Main_Menu extends javax.swing.JFrame {
 
     private void btnsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsearchActionPerformed
 
-        pnScore.setVisible(false);
-        pnStudent.setVisible(false);
-        p3.setVisible(true);
+        try {
+            pnScore.setVisible(false);
+            pnStudent.setVisible(false);
+            p3.setVisible(true);
+            JFreeChart pieChart = createChart(createDataset());
+            ChartPanel chartPanel = new ChartPanel(pieChart);
+            p3.removeAll();
+            p3.add(chartPanel, BorderLayout.CENTER);
+            p3.validate();
+        } catch (Exception ex) {
+            Logger.getLogger(Main_Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
 
     }//GEN-LAST:event_btnsearchActionPerformed
@@ -1213,9 +1236,6 @@ public class Main_Menu extends javax.swing.JFrame {
                     txtIDScore.setText(score.getId());
                     txtfullnameScore.setText(score.getFullname());
                     switch (score.getHanhKiem()) {
-                        case "Xuất sắc":
-                            jComboBox1.setSelectedItem("Xuất sắc");
-                            break;
                         case "Tốt":
                             jComboBox1.setSelectedItem("Tốt");
                             break;
@@ -1375,8 +1395,11 @@ public class Main_Menu extends javax.swing.JFrame {
 
     private void txtIDScoreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDScoreKeyPressed
 
-
     }//GEN-LAST:event_txtIDScoreKeyPressed
+
+    private void btnSearchStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchStudentActionPerformed
+
+    }//GEN-LAST:event_btnSearchStudentActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1422,13 +1445,13 @@ public class Main_Menu extends javax.swing.JFrame {
     private javax.swing.JButton btnResetScore;
     private javax.swing.JButton btnResetStudent;
     private javax.swing.JButton btnScore;
+    private javax.swing.JButton btnSearchStudent;
     private javax.swing.JButton btnStudent;
     private javax.swing.JButton btnUpdateScore;
     private javax.swing.JButton btnUpdateStudent;
     private javax.swing.JButton btnlogout;
     private javax.swing.JButton btnsearch;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private com.toedter.calendar.JDateChooser jDateChooserBirthdate;
@@ -1458,7 +1481,6 @@ public class Main_Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JPanel p3;
     private javax.swing.JPanel pnButtonStudent;
@@ -1488,6 +1510,7 @@ public class Main_Menu extends javax.swing.JFrame {
     private javax.swing.JTextField txtLy;
     private javax.swing.JTextField txtPhone;
     private javax.swing.JTextField txtQP;
+    private javax.swing.JTextField txtSearchStudent;
     private javax.swing.JTextField txtSinh;
     private javax.swing.JTextField txtSu;
     private javax.swing.JTextField txtTheChat;

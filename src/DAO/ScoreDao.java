@@ -115,7 +115,7 @@ public class ScoreDao {
         }
     }
 
-    public List<Score> findScore() throws Exception {
+    public List<Score> getScore() throws Exception {
         String sql = "select * from Scores";
 
         try (
@@ -146,5 +146,61 @@ public class ScoreDao {
             }
             return list;
         }
+    }
+     public int getHSGioi() throws Exception {
+        ScoreDao dao = new ScoreDao();
+        List<Score> list = dao.getScore();
+
+        int count = 0;
+        for (Score score : list) {
+            if (score.getHanhKiem().equalsIgnoreCase("Tốt") && score.getDtb() >= 8) {
+                count++;
+            }
+
+        }
+        return count;
+    }
+
+    public int getHSKha() throws Exception {
+        ScoreDao dao = new ScoreDao();
+        List<Score> list = dao.getScore();
+
+        int count = 0;
+        for (Score score : list) {
+            if ((score.getHanhKiem().equalsIgnoreCase("Khá")) && score.getDtb() >= 6.5) {
+                count++;
+            } else if (score.getHanhKiem().equals("Tốt") && score.getDtb() < 8 && score.getDtb() >= 6.5) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public int getHSTB() throws Exception {
+        ScoreDao dao = new ScoreDao();
+        List<Score> list = dao.getScore();
+
+        int count = 0;
+        for (Score score : list) {
+            if ((score.getHanhKiem().equalsIgnoreCase("Trung bình")) && score.getDtb() >= 5) {
+                count++;
+            } else if ((score.getHanhKiem().equals("Tốt") || score.getHanhKiem().equalsIgnoreCase("Khá")) && score.getDtb() < 6.5 && score.getDtb() >= 5) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public int getHSYeu() throws Exception {
+        ScoreDao dao = new ScoreDao();
+        List<Score> list = dao.getScore();
+
+        int count = 0;
+        for (Score score : list) {
+            if ((score.getHanhKiem().equalsIgnoreCase("Yếu")) || score.getDtb() < 5) {
+                count++;
+            }
+        }
+        return count;
     }
 }
