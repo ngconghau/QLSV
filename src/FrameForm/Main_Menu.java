@@ -22,6 +22,8 @@ import javax.swing.table.DefaultTableModel;
 import java.lang.Float;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.event.TableModelListener;
+import javax.swing.table.TableModel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -306,8 +308,8 @@ public class Main_Menu extends javax.swing.JFrame {
         btnResetScore = new javax.swing.JButton();
         btnUpdateScore = new javax.swing.JButton();
         btnDeleteScore = new javax.swing.JButton();
-        jTextField4 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        txtSearchScore = new javax.swing.JTextField();
+        btnSearchScore = new javax.swing.JButton();
         p3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -649,7 +651,7 @@ public class Main_Menu extends javax.swing.JFrame {
                         .addGroup(pnStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnStudentLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(scrTableStudent, javax.swing.GroupLayout.DEFAULT_SIZE, 609, Short.MAX_VALUE)
+                                .addComponent(scrTableStudent, javax.swing.GroupLayout.DEFAULT_SIZE, 699, Short.MAX_VALUE)
                                 .addGap(14, 14, 14))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnStudentLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -892,35 +894,35 @@ public class Main_Menu extends javax.swing.JFrame {
         tblScore.setAutoCreateRowSorter(true);
         tblScore.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "FullName", "Toán", "Văn", "Anh", "Lý", "Hóa", "Sinh", "Địa", "Sử", "Tin", "QP", "GDCD", "Thể chất"
+                "ID", "FullName", "HK", "ĐTB", "Toán", "Văn", "Anh", "Lý", "Hóa", "Sinh", "Địa", "Sử", "Tin", "QP", "GDCD", "Thể chất"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, true, false
+                false, false, true, true, false, false, false, false, false, false, false, false, false, false, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -974,7 +976,7 @@ public class Main_Menu extends javax.swing.JFrame {
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap(45, Short.MAX_VALUE)
+                .addContainerGap(135, Short.MAX_VALUE)
                 .addComponent(btnAddScore, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(82, 82, 82)
                 .addComponent(btnResetScore)
@@ -996,7 +998,12 @@ public class Main_Menu extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton2.setText("Tìm");
+        btnSearchScore.setText("Tìm");
+        btnSearchScore.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchScoreActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnScoreLayout = new javax.swing.GroupLayout(pnScore);
         pnScore.setLayout(pnScoreLayout);
@@ -1013,12 +1020,12 @@ public class Main_Menu extends javax.swing.JFrame {
                         .addGroup(pnScoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnScoreLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtSearchScore, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton2)
+                                .addComponent(btnSearchScore)
                                 .addGap(104, 104, 104))
                             .addGroup(pnScoreLayout.createSequentialGroup()
-                                .addGap(5, 5, 5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(scrTableScore)
                                 .addContainerGap())))))
         );
@@ -1029,16 +1036,16 @@ public class Main_Menu extends javax.swing.JFrame {
                     .addGroup(pnScoreLayout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addGroup(pnScoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2))
-                        .addGap(18, 18, 18)
+                            .addComponent(txtSearchScore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnSearchScore))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(scrTableScore, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnScoreLayout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addComponent(pnScoreforSub, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pnlprinciple.add(pnScore, "card2");
@@ -1390,10 +1397,12 @@ public class Main_Menu extends javax.swing.JFrame {
     //methol reset form score 
     private void btnResetScoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetScoreActionPerformed
         resetFormScore();
+        loadTableScoretData();
     }//GEN-LAST:event_btnResetScoreActionPerformed
     //  methol reset form students
     private void btnResetStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetStudentActionPerformed
         resetFormStudent();
+        loadTableStudentData();
     }//GEN-LAST:event_btnResetStudentActionPerformed
 
     private void txtPhoneKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPhoneKeyTyped
@@ -1413,7 +1422,48 @@ public class Main_Menu extends javax.swing.JFrame {
 
     private void btnSearchStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchStudentActionPerformed
 
+        StudentDao dao = new StudentDao();
+        Student student = new Student();
+        String id = txtSearchStudent.getText();
+//       
+        try {
+            if (id.equals("")) {
+                JOptionPane.showMessageDialog(this, "ID không tồn tại");
+            } else {
+                student = dao.findStudentByID(id);
+                dtmStudent.setRowCount(0);
+                dtmStudent.addRow(new Object[]{student.getId(), student.getFullName(),
+                    student.getGender(), student.getBirthdate(), student.getAddress(), student.getPhoneNum(), student.getEmail()});
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }//GEN-LAST:event_btnSearchStudentActionPerformed
+
+    private void btnSearchScoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchScoreActionPerformed
+        // TODO add your handling code here:
+         ScoreDao dao = new ScoreDao();
+        Score score = new Score();
+        String id = txtSearchScore.getText();
+//       
+        try {
+            if (id.equals("")) {
+                JOptionPane.showMessageDialog(this, "ID không tồn tại");
+            } else {
+                score = dao.findByID(id);
+                dtmScore.setRowCount(0);
+                dtmScore.addRow(new Object[]{score.getId(), score.getFullname(), score.getToan(),score.getVan(),
+                    score.getAnh(),score.getLy(),score.getHoa(),score.getSinh(),score.getDia(),score.getSu(),
+                    score.getQuocphong(),score.getTin(),score.getGdcd(),score.getThechat(),score.getHanhKiem(),score.getDtb()
+                    });
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnSearchScoreActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1459,6 +1509,7 @@ public class Main_Menu extends javax.swing.JFrame {
     private javax.swing.JButton btnResetScore;
     private javax.swing.JButton btnResetStudent;
     private javax.swing.JButton btnScore;
+    private javax.swing.JButton btnSearchScore;
     private javax.swing.JButton btnSearchStudent;
     private javax.swing.JButton btnStudent;
     private javax.swing.JButton btnUpdateScore;
@@ -1466,7 +1517,6 @@ public class Main_Menu extends javax.swing.JFrame {
     private javax.swing.JButton btnlogout;
     private javax.swing.JButton btnsearch;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private com.toedter.calendar.JDateChooser jDateChooserBirthdate;
     private javax.swing.JLabel jLabel1;
@@ -1494,7 +1544,6 @@ public class Main_Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JPanel p3;
     private javax.swing.JPanel pnButtonStudent;
     private javax.swing.JPanel pnInfor;
@@ -1524,6 +1573,7 @@ public class Main_Menu extends javax.swing.JFrame {
     private javax.swing.JLabel txtNameScores;
     private javax.swing.JTextField txtPhone;
     private javax.swing.JTextField txtQP;
+    private javax.swing.JTextField txtSearchScore;
     private javax.swing.JTextField txtSearchStudent;
     private javax.swing.JTextField txtSinh;
     private javax.swing.JTextField txtSu;
