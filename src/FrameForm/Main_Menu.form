@@ -72,9 +72,9 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="196" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="275" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="213" max="32767" attributes="0"/>
+                      <EmptySpace pref="277" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -94,7 +94,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Times New Roman" size="48" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="UTC2 University Student Management System"/>
+                <Property name="text" type="java.lang.String" value="H&#x1ec6; TH&#x1ed0;NG QU&#x1ea2;N L&#xcd; H&#x1ecc;C SINH"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -124,7 +124,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/Images/nhapdiem.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="SCORE"/>
+                <Property name="text" type="java.lang.String" value="&#x110;I&#x1ec2;M"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnScoreActionPerformed"/>
@@ -141,7 +141,7 @@
                   <Color blue="66" green="66" red="66" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Times New Roman" size="18" style="1"/>
+                  <Font name="Times New Roman" size="16" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="33" type="rgb"/>
@@ -149,7 +149,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/Images/User-Interface-Logout-icon.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="LOGOUT"/>
+                <Property name="text" type="java.lang.String" value="&#x110;&#x102;NG XU&#x1ea4;T"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnlogoutActionPerformed"/>
@@ -174,7 +174,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/Images/Users-Student-icon.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="STUDENT "/>
+                <Property name="text" type="java.lang.String" value="H&#x1ecc;C SINH"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnStudentActionPerformed"/>
@@ -248,7 +248,7 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="scrTableStudent" pref="700" max="32767" attributes="0"/>
+                                          <Component id="scrTableStudent" pref="609" max="32767" attributes="0"/>
                                           <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="1" attributes="0">
@@ -291,7 +291,7 @@
                   <Properties>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                        <TitledBorder justification="2" position="2" title="Information Students ">
+                        <TitledBorder justification="2" position="2" title="Th&#xf4;ng tin sinh vi&#xea;n">
                           <Font PropertyName="font" name="Times New Roman" size="18" style="1"/>
                         </TitledBorder>
                       </Border>
@@ -406,12 +406,12 @@
                   <SubComponents>
                     <Component class="javax.swing.JLabel" name="jLabel7">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="ID:"/>
+                        <Property name="text" type="java.lang.String" value="MHS:"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel8">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Full Name:"/>
+                        <Property name="text" type="java.lang.String" value="H&#x1ecd; v&#xe0; t&#xea;n:"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="txtID">
@@ -423,12 +423,12 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel9">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Gender:"/>
+                        <Property name="text" type="java.lang.String" value="Gi&#x1edb;i t&#xed;nh:"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel11">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Address:"/>
+                        <Property name="text" type="java.lang.String" value="&#x110;&#x1ecb;a ch&#x1ec9;:"/>
                       </Properties>
                     </Component>
                     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -460,7 +460,7 @@
                           <ComponentRef name="buttonGroup1"/>
                         </Property>
                         <Property name="selected" type="boolean" value="true"/>
-                        <Property name="text" type="java.lang.String" value="Male"/>
+                        <Property name="text" type="java.lang.String" value="Nam"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rdbMaleActionPerformed"/>
@@ -471,7 +471,7 @@
                         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                           <ComponentRef name="buttonGroup1"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Female"/>
+                        <Property name="text" type="java.lang.String" value="N&#x1eef;"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="txtEmail">
@@ -488,12 +488,12 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel16">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Phone:"/>
+                        <Property name="text" type="java.lang.String" value="S&#x1ed1; &#x110;T:"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel3">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Birthdate:"/>
+                        <Property name="text" type="java.lang.String" value="Ng&#xe0;y sinh:"/>
                       </Properties>
                     </Component>
                     <Component class="com.toedter.calendar.JDateChooser" name="jDateChooserBirthdate">
@@ -516,12 +516,12 @@
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="7" rowCount="22">
                             <Column editable="true" title="ID" type="java.lang.Object"/>
-                            <Column editable="true" title="FullName" type="java.lang.Object"/>
-                            <Column editable="true" title="Gender" type="java.lang.Object"/>
-                            <Column editable="true" title="Birthdate" type="java.lang.Object"/>
-                            <Column editable="true" title="address" type="java.lang.Object"/>
-                            <Column editable="true" title="phone" type="java.lang.Object"/>
-                            <Column editable="true" title="email" type="java.lang.Object"/>
+                            <Column editable="true" title="H&#x1ecd; v&#xe0; t&#xea;n" type="java.lang.Object"/>
+                            <Column editable="true" title="Gi&#x1edb;i t&#xed;nh" type="java.lang.Object"/>
+                            <Column editable="true" title="Ng&#xe0;y sinh" type="java.lang.Object"/>
+                            <Column editable="true" title="&#x110;&#x1ecb;a ch&#x1ec9;" type="java.lang.Object"/>
+                            <Column editable="true" title="S&#x1ed1; &#x110;T" type="java.lang.Object"/>
+                            <Column editable="true" title="Email" type="java.lang.Object"/>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -615,7 +615,7 @@
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/Images/save.png"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="ADD"/>
+                        <Property name="text" type="java.lang.String" value="TH&#xca;M"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddStudentActionPerformed"/>
@@ -643,7 +643,7 @@
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/Images/Text-Edit-icon.png"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="UPDATE"/>
+                        <Property name="text" type="java.lang.String" value="C&#x1eac;P NH&#x1eac;T"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUpdateStudentActionPerformed"/>
@@ -654,7 +654,7 @@
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Times New Roman" size="18" style="1"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="DELETE"/>
+                        <Property name="text" type="java.lang.String" value="X&#xd3;A"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeleteStudentActionPerformed"/>
@@ -666,7 +666,7 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnSearchStudent">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Find"/>
+                    <Property name="text" type="java.lang.String" value="T&#xec;m"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSearchStudentActionPerformed"/>
@@ -747,7 +747,7 @@
                   <Properties>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                        <TitledBorder justification="2" position="2" title="Score for Subjects">
+                        <TitledBorder justification="2" position="2" title="&#x110;i&#x1ec3;m m&#xf4;n h&#x1ecd;c">
                           <Font PropertyName="font" name="Times New Roman" size="18" style="1"/>
                         </TitledBorder>
                       </Border>
@@ -762,7 +762,7 @@
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtNameScores" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -858,7 +858,7 @@
                               </Group>
                               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtNameScores" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtfullnameScore" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
@@ -946,9 +946,9 @@
                         <Property name="text" type="java.lang.String" value="ID:"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel12">
+                    <Component class="javax.swing.JLabel" name="txtNameScores">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Full Name:"/>
+                        <Property name="text" type="java.lang.String" value="H&#x1ecd; v&#xe0; t&#xea;n:"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="txtIDScore">
@@ -1205,7 +1205,7 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace pref="35" max="32767" attributes="0"/>
+                              <EmptySpace pref="45" max="32767" attributes="0"/>
                               <Component id="btnAddScore" min="-2" pref="121" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
                               <Component id="btnResetScore" min="-2" max="-2" attributes="0"/>
@@ -1241,7 +1241,7 @@
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/Images/save.png"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="ADD"/>
+                        <Property name="text" type="java.lang.String" value="TH&#xca;M"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddScoreActionPerformed"/>
@@ -1269,7 +1269,7 @@
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/Images/Text-Edit-icon.png"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="UPDATE"/>
+                        <Property name="text" type="java.lang.String" value="C&#x1eac;P NH&#x1eac;T"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUpdateScoreActionPerformed"/>
@@ -1280,7 +1280,7 @@
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Times New Roman" size="18" style="1"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="DELETE"/>
+                        <Property name="text" type="java.lang.String" value="X&#xd3;A"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeleteScoreActionPerformed"/>
@@ -1292,7 +1292,7 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="jButton2">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Find"/>
+                    <Property name="text" type="java.lang.String" value="T&#xec;m"/>
                   </Properties>
                 </Component>
               </SubComponents>

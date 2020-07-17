@@ -76,7 +76,7 @@ public class Main_Menu extends javax.swing.JFrame {
 
 // begin funtion 
     public void initTableStudentModel() {
-        String[] columnHeaders = new String[]{"id", "FullName", "Gender", "Birthdate", "Address", "PhoneNumber", "Email"};
+        String[] columnHeaders = new String[]{"MSV", "Họ và tên", "Giới tính", "Ngày sinh", "Địa chỉ", "Số ĐT", "Email"};
         dtmStudent = new DefaultTableModel();
         dtmStudent.setColumnIdentifiers(columnHeaders);
         tblStudents.setModel(dtmStudent);
@@ -108,7 +108,7 @@ public class Main_Menu extends javax.swing.JFrame {
 
     public void initTableScoreModel() {
         String[] columnHeaders = new String[]{
-            "ID", "Name", "Toán", "Văn", "Anh", "Lý", "Hóa", "ĐSinh", "Địa", "Sử", "QP", "Tin", "GDCD", "GDTC", "Hạnh Kiểm", "DTB"
+            "ID", "Tên", "Toán", "Văn", "Anh", "Lý", "Hóa", "Sinh", "Địa", "Sử", "QP", "Tin", "GDCD", "GDTC", "Hạnh Kiểm", "ĐTB"
         };
         dtmScore = new DefaultTableModel();
         dtmScore.setColumnIdentifiers(columnHeaders);
@@ -268,7 +268,7 @@ public class Main_Menu extends javax.swing.JFrame {
         pnScore = new javax.swing.JPanel();
         pnScoreforSub = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        txtNameScores = new javax.swing.JLabel();
         txtIDScore = new javax.swing.JTextField();
         txtfullnameScore = new javax.swing.JTextField();
         txtToan = new javax.swing.JTextField();
@@ -322,16 +322,16 @@ public class Main_Menu extends javax.swing.JFrame {
         pnltop.setBackground(new java.awt.Color(153, 153, 153));
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
-        jLabel1.setText("UTC2 University Student Management System");
+        jLabel1.setText("HỆ THỐNG QUẢN LÍ HỌC SINH");
 
         javax.swing.GroupLayout pnltopLayout = new javax.swing.GroupLayout(pnltop);
         pnltop.setLayout(pnltopLayout);
         pnltopLayout.setHorizontalGroup(
             pnltopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnltopLayout.createSequentialGroup()
-                .addGap(196, 196, 196)
+                .addGap(275, 275, 275)
                 .addComponent(jLabel1)
-                .addContainerGap(213, Short.MAX_VALUE))
+                .addContainerGap(277, Short.MAX_VALUE))
         );
         pnltopLayout.setVerticalGroup(
             pnltopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -349,7 +349,7 @@ public class Main_Menu extends javax.swing.JFrame {
         btnScore.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         btnScore.setForeground(new java.awt.Color(51, 51, 51));
         btnScore.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/nhapdiem.png"))); // NOI18N
-        btnScore.setText("SCORE");
+        btnScore.setText("ĐIỂM");
         btnScore.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnScoreActionPerformed(evt);
@@ -358,10 +358,10 @@ public class Main_Menu extends javax.swing.JFrame {
         pnlmenu.add(btnScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 190, 80));
 
         btnlogout.setBackground(new java.awt.Color(102, 102, 102));
-        btnlogout.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        btnlogout.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
         btnlogout.setForeground(new java.awt.Color(51, 51, 51));
         btnlogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/User-Interface-Logout-icon.png"))); // NOI18N
-        btnlogout.setText("LOGOUT");
+        btnlogout.setText("ĐĂNG XUẤT");
         btnlogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnlogoutActionPerformed(evt);
@@ -373,7 +373,7 @@ public class Main_Menu extends javax.swing.JFrame {
         btnStudent.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         btnStudent.setForeground(new java.awt.Color(51, 51, 51));
         btnStudent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Users-Student-icon.png"))); // NOI18N
-        btnStudent.setText("STUDENT ");
+        btnStudent.setText("HỌC SINH");
         btnStudent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnStudentActionPerformed(evt);
@@ -399,11 +399,11 @@ public class Main_Menu extends javax.swing.JFrame {
 
         pnStudent.setPreferredSize(new java.awt.Dimension(1170, 524));
 
-        pnInfor.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Information Students ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Times New Roman", 1, 18))); // NOI18N
+        pnInfor.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông tin sinh viên", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Times New Roman", 1, 18))); // NOI18N
 
-        jLabel7.setText("ID:");
+        jLabel7.setText("MHS:");
 
-        jLabel8.setText("Full Name:");
+        jLabel8.setText("Họ và tên:");
 
         txtID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -411,9 +411,9 @@ public class Main_Menu extends javax.swing.JFrame {
             }
         });
 
-        jLabel9.setText("Gender:");
+        jLabel9.setText("Giới tính:");
 
-        jLabel11.setText("Address:");
+        jLabel11.setText("Địa chỉ:");
 
         jScrollPane1.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         jScrollPane1.setMinimumSize(new java.awt.Dimension(15, 15));
@@ -424,7 +424,7 @@ public class Main_Menu extends javax.swing.JFrame {
 
         buttonGroup1.add(rdbMale);
         rdbMale.setSelected(true);
-        rdbMale.setText("Male");
+        rdbMale.setText("Nam");
         rdbMale.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rdbMaleActionPerformed(evt);
@@ -432,7 +432,7 @@ public class Main_Menu extends javax.swing.JFrame {
         });
 
         buttonGroup1.add(rdbFemale);
-        rdbFemale.setText("Female");
+        rdbFemale.setText("Nữ");
 
         jLabel15.setText("Email:");
 
@@ -442,9 +442,9 @@ public class Main_Menu extends javax.swing.JFrame {
             }
         });
 
-        jLabel16.setText("Phone:");
+        jLabel16.setText("Số ĐT:");
 
-        jLabel3.setText("Birthdate:");
+        jLabel3.setText("Ngày sinh:");
 
         jDateChooserBirthdate.setDateFormatString("yyyy-MM-dd");
 
@@ -555,7 +555,7 @@ public class Main_Menu extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "FullName", "Gender", "Birthdate", "address", "phone", "email"
+                "ID", "Họ và tên", "Giới tính", "Ngày sinh", "Địa chỉ", "Số ĐT", "Email"
             }
         ));
         tblStudents.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -567,7 +567,7 @@ public class Main_Menu extends javax.swing.JFrame {
 
         btnAddStudent.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnAddStudent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/save.png"))); // NOI18N
-        btnAddStudent.setText("ADD");
+        btnAddStudent.setText("THÊM");
         btnAddStudent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddStudentActionPerformed(evt);
@@ -585,7 +585,7 @@ public class Main_Menu extends javax.swing.JFrame {
 
         btnUpdateStudent.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         btnUpdateStudent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Text-Edit-icon.png"))); // NOI18N
-        btnUpdateStudent.setText("UPDATE");
+        btnUpdateStudent.setText("CẬP NHẬT");
         btnUpdateStudent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateStudentActionPerformed(evt);
@@ -593,7 +593,7 @@ public class Main_Menu extends javax.swing.JFrame {
         });
 
         btnDeleteStudent.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        btnDeleteStudent.setText("DELETE");
+        btnDeleteStudent.setText("XÓA");
         btnDeleteStudent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteStudentActionPerformed(evt);
@@ -627,7 +627,7 @@ public class Main_Menu extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        btnSearchStudent.setText("Find");
+        btnSearchStudent.setText("Tìm");
         btnSearchStudent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSearchStudentActionPerformed(evt);
@@ -649,7 +649,7 @@ public class Main_Menu extends javax.swing.JFrame {
                         .addGroup(pnStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnStudentLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(scrTableStudent, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+                                .addComponent(scrTableStudent, javax.swing.GroupLayout.DEFAULT_SIZE, 609, Short.MAX_VALUE)
                                 .addGap(14, 14, 14))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnStudentLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -679,11 +679,11 @@ public class Main_Menu extends javax.swing.JFrame {
 
         pnScore.setPreferredSize(new java.awt.Dimension(1170, 524));
 
-        pnScoreforSub.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Score for Subjects", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Times New Roman", 1, 18))); // NOI18N
+        pnScoreforSub.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Điểm môn học", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Times New Roman", 1, 18))); // NOI18N
 
         jLabel10.setText("ID:");
 
-        jLabel12.setText("Full Name:");
+        txtNameScores.setText("Họ và tên:");
 
         txtIDScore.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -755,7 +755,7 @@ public class Main_Menu extends javax.swing.JFrame {
                 .addGroup(pnScoreforSubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(pnScoreforSubLayout.createSequentialGroup()
                         .addGroup(pnScoreforSubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel12)
+                            .addComponent(txtNameScores)
                             .addComponent(jLabel10))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(pnScoreforSubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -827,7 +827,7 @@ public class Main_Menu extends javax.swing.JFrame {
                     .addComponent(txtIDScore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addGroup(pnScoreforSubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
+                    .addComponent(txtNameScores)
                     .addComponent(txtfullnameScore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addGroup(pnScoreforSubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -936,7 +936,7 @@ public class Main_Menu extends javax.swing.JFrame {
 
         btnAddScore.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnAddScore.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/save.png"))); // NOI18N
-        btnAddScore.setText("ADD");
+        btnAddScore.setText("THÊM");
         btnAddScore.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddScoreActionPerformed(evt);
@@ -954,7 +954,7 @@ public class Main_Menu extends javax.swing.JFrame {
 
         btnUpdateScore.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         btnUpdateScore.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Text-Edit-icon.png"))); // NOI18N
-        btnUpdateScore.setText("UPDATE");
+        btnUpdateScore.setText("CẬP NHẬT");
         btnUpdateScore.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateScoreActionPerformed(evt);
@@ -962,7 +962,7 @@ public class Main_Menu extends javax.swing.JFrame {
         });
 
         btnDeleteScore.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        btnDeleteScore.setText("DELETE");
+        btnDeleteScore.setText("XÓA");
         btnDeleteScore.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteScoreActionPerformed(evt);
@@ -974,7 +974,7 @@ public class Main_Menu extends javax.swing.JFrame {
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap(35, Short.MAX_VALUE)
+                .addContainerGap(45, Short.MAX_VALUE)
                 .addComponent(btnAddScore, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(82, 82, 82)
                 .addComponent(btnResetScore)
@@ -996,7 +996,7 @@ public class Main_Menu extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton2.setText("Find");
+        jButton2.setText("Tìm");
 
         javax.swing.GroupLayout pnScoreLayout = new javax.swing.GroupLayout(pnScore);
         pnScore.setLayout(pnScoreLayout);
@@ -1472,7 +1472,6 @@ public class Main_Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
@@ -1522,6 +1521,7 @@ public class Main_Menu extends javax.swing.JFrame {
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtIDScore;
     private javax.swing.JTextField txtLy;
+    private javax.swing.JLabel txtNameScores;
     private javax.swing.JTextField txtPhone;
     private javax.swing.JTextField txtQP;
     private javax.swing.JTextField txtSearchStudent;
